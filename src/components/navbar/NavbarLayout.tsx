@@ -55,13 +55,14 @@ const Navbar = (props: Props) => {
               </p>
 
               {!!logo && (
-                <div className="w-auto h-24 aspect-video lg:aspect-[16/6] relative">
+                <div className="w-24 h-16 relative">
                   <Image
                     src={logo}
                     fill
                     alt={settings?.logo?.alt ?? "Logo"}
                     className="object-contain"
                     priority
+                    quality={100}
                   />
                 </div>
               )}
