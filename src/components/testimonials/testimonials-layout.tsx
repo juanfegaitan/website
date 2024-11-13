@@ -74,7 +74,7 @@ export function TestimonialsLayout({ data }: Props) {
                       />
                     )}
 
-                    <div className="font-bold text-xl font-noto">
+                    <div className="font-bold text-xl ">
                       {testimonial.name}
                     </div>
 

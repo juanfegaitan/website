@@ -80,7 +80,7 @@ const Navbar = (props: Props) => {
                 <li
                   key={href}
                   className={cn(
-                    "font-noto text-lg font-medium border-transparent border-b pb-1 transition-all hover:border-input duration-750",
+                    " text-lg font-medium border-transparent border-b pb-1 transition-all hover:border-input duration-750",
                     {
                       "border-input": isActive,
                     },

@@ -48,8 +48,7 @@ const config: Config = {
         body2: "clamp(1.125rem, 0.231vw + 1.065rem, 1.25rem)",
       },
       fontFamily: {
-        noto: ["var(--font-noto)", "sans-serif"],
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ["var(--font-montserrat)", ...fontFamily.sans],
       },
       borderRadius: {
         "2.5xl": "1.25rem",

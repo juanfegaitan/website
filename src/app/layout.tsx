@@ -1,4 +1,4 @@
-import { fontNoto, fontSans } from "@/config/fonts";
+import { fontMontserrat } from "@/config/fonts";
 import { cn } from "@/lib/cn";
 import { generateTheme } from "@/lib/theme-generator";
 import { loadSettings } from "@/sanity/loader/loadQuery";
@@ -54,9 +54,8 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased flex flex-col",
-          fontSans.variable,
-          fontNoto.variable,
+          "min-h-screen bg-background font-sans antialiased flex flex-col font-sans",
+          fontMontserrat.variable,
         )}
       >
         {children}
