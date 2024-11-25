@@ -41,14 +41,14 @@ export default defineType({
     }),
     defineField({
       name: "grid",
-      title: "List",
-      description: "List",
-      type: "array",
-      of: [
-        {
-          type: "grid",
-        },
-      ],
+      title: "Características",
+      type: "gridSection",
+    }),
+
+    defineField({
+      name: "properties",
+      title: "Donde invertir",
+      type: "propertiesSection",
     }),
   ],
   preview: {

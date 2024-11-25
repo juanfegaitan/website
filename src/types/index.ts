@@ -551,6 +551,7 @@ export interface MarketDocument {
   description?: PortableTextBlock[];
   cta?: Cta;
   displayTitle?: string;
-  grid?: Grid[];
+  grid?: GridSection;
+  properties?: PropertiesSection;
   _key: string;
 }

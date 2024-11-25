@@ -383,17 +383,53 @@ export const marketsQuery = groq`
         variant,
       },
       displayTitle,
-      grid[]{
+      properties{
         ...,
-        image{
-          ...,
-          asset->{
-            ...,
-            "_ref": _id,
-          },
-        },
         title,
         description,
+        properties[]->{
+          ...,
+          _id,
+          seo,
+          description,
+          kindOfDepartments[]{
+            ...,
+            image{
+              ...,
+              asset->{
+                ...,
+                "_ref": _id,
+              },
+            },
+          },
+          gallery{
+            ...,
+            images[]{
+              ...,
+              asset->{
+                ...,
+                "_ref": _id,
+              },
+            },
+          },
+          "slug": slug.current,
+        },
+      },
+      grid{
+       ...,
+        title,
+        grid[]{
+          ...,
+          image{
+            ...,
+            asset->{
+              ...,
+              "_ref": _id,
+            },
+          },
+          title,
+          description,
+        },
       },
     },
   }

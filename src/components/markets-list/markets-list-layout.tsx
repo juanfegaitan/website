@@ -1,16 +1,19 @@
 "use client";
 import { urlForImage } from "@/sanity/lib/utils";
-import { MarketDocument } from "@/types";
+import { InvestPagePayload, MarketDocument } from "@/types";
 import Image from "next/image";
 import { Cta } from "../cta";
+import { GridSectionLayout } from "../grid-section/grid-section-layout";
+import { PropertiesSectionLayout } from "../properties-section/properties-section-layout";
 import { CustomPortableText } from "../shared/CustomPortableText";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs/tabs";
 
 type Props = {
   data?: MarketDocument[] | null;
+  investPage: InvestPagePayload
 };
 
-export function MarketsListLayout({ data }: Props) {
+export function MarketsListLayout({ data, investPage }: Props) {
   if (!data) return null;
 
   return (
@@ -43,41 +46,6 @@ export function MarketsListLayout({ data }: Props) {
                   <div>
                     <CustomPortableText value={market.description as any} />
 
-                    <div className="grid mt-12 gap-8">
-                      {market.grid?.map((item) => {
-                        const imageURL =
-                          item.image?.image &&
-                          urlForImage(item.image.image)?.url();
-
-                        return (
-                          <div
-                            key={item._key}
-                            className="flex gap-4 items-start"
-                          >
-                            <div className="relative size-10 rounded-lg flex-shrink-0 overflow-hidden">
-                              {imageURL && (
-                                <Image
-                                  src={imageURL}
-                                  fill
-                                  alt={item.image?.alt ?? ""}
-                                  className="w-full h-48 object-cover"
-                                />
-                              )}
-                            </div>
-
-                            <div className="flex flex-col gap-2 flex-1">
-                              <h3 className="text-lg font-bold">
-                                {item.title}
-                              </h3>
-                              <CustomPortableText
-                                value={item.description as any}
-                              />
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-
                     {market.cta && <Cta {...market.cta} className="mt-12" />}
                   </div>
                 </div>
@@ -97,6 +65,10 @@ export function MarketsListLayout({ data }: Props) {
                   </div>
                 </div>
               </div>
+
+              <GridSectionLayout data={market.grid} />
+
+              <PropertiesSectionLayout data={market.properties} investPage={investPage} />
             </TabsContent>
           );
         })}
