@@ -9,7 +9,7 @@ import { Carousel, CarouselContent, CarouselItem } from "../carousel";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), {
   ssr: false,
   loading() {
-    return <div className="aspect-[3/4.87] w-full animate-pulse bg-neutral-200" />;
+    return <div className="aspect-[9/16] w-full animate-pulse bg-neutral-200" />;
   },
 });
 
@@ -28,7 +28,7 @@ export function TestimonialsLayout({ data }: Props) {
 
       <div className="main_container mt-12">
         <Carousel className="w-full">
-          <CarouselContent className="-ml-14">
+          <CarouselContent className="-ml-12">
             {data.testimonials?.map((testimonial, index) => {
               const image = testimonial.image?.image;
 
@@ -39,11 +39,11 @@ export function TestimonialsLayout({ data }: Props) {
               return (
                 <CarouselItem
                   key={index}
-                  className="md:basis-1/2 lg:basis-1/3 pl-14"
+                  className="md:basis-1/2 lg:basis-1/3 pl-12"
                 >
                   <div className="flex flex-col gap-4 items-center text-center">
                     {testimonial.video && (
-                      <div className="relative aspect-[3/4.87] w-full rounded-2xl overflow-hidden">
+                      <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden">
                         <ReactPlayer
                           url={testimonial.video}
                           title={testimonial.name}
@@ -52,7 +52,7 @@ export function TestimonialsLayout({ data }: Props) {
                           className="absolute inset-0"
                           controls
                           fallback={
-                            <div className="aspect-[3/4.87] w-full animate-pulse bg-neutral-200" />
+                            <div className="aspect-[9/16] w-full animate-pulse bg-neutral-200" />
                           }
                         />
                       </div>
@@ -70,7 +70,7 @@ export function TestimonialsLayout({ data }: Props) {
                         }
                         blurDataURL={image.asset.metadata.lqip}
                         placeholder="blur"
-                        className="rounded-full size-14 object-cover aspect-square flex-shrink-0"
+                        className="rounded-full size-12 object-cover aspect-square flex-shrink-0"
                       />
                     )}
 
