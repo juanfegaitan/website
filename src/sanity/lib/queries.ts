@@ -14,6 +14,21 @@ const SECTIONS_QUERY = `
       placeholderName,
       placeholderEmail,
     },
+    _type == "gallerySection" => {
+      ...,
+      title,
+      description,
+      images[]{
+         ...,
+        image{
+          ...,
+          asset->{
+            ...,
+            "_ref": _id,
+          },
+        },
+      },
+    },
     _type == "mansorySection" => {
       ...,
       title,

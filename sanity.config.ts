@@ -27,6 +27,7 @@ import ctaSection from "@/sanity/schemas/objects/cta-section";
 import duration from "@/sanity/schemas/objects/duration";
 import feature from "@/sanity/schemas/objects/feature";
 import gallery from "@/sanity/schemas/objects/gallery";
+import gallerySection from "@/sanity/schemas/objects/gallery-section";
 import grid from "@/sanity/schemas/objects/grid";
 import gridSection from "@/sanity/schemas/objects/grid-section";
 import hero from "@/sanity/schemas/objects/hero";
@@ -92,6 +93,7 @@ export default defineConfig({
       property,
       service,
       // Objects
+      gallerySection,
       mansorySection,
       propertiesSection,
       markets,

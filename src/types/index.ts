@@ -22,6 +22,7 @@ export enum SectionsList {
   GRID_SECTION = "gridSection",
   PROPERTIES_SECTION = "propertiesSection",
   MANSORY_SECTION = "mansorySection",
+  GALERY_SECTION = "gallerySection",
 }
 
 export interface Seo {
@@ -174,7 +175,8 @@ export type Sections =
   | LastEntriesSection
   | GridSection
   | PropertiesSection
-  | MansorySection;
+  | MansorySection
+  | GallerySection;
 
 export enum Singletons {
   ABOUT = "about",
@@ -360,6 +362,17 @@ export interface AccordionSection {
     _key: string;
   }[];
   _type: SectionsList.ACCORDION_SECTION;
+  _key: string;
+}
+
+export type PositionList = "left" | "right" | "center";
+
+export interface GallerySection {
+  title?: string;
+  titlePosition?: PositionList;
+  description?: PortableTextBlock[];
+  images?: CustomImage[];
+  _type: SectionsList.GALERY_SECTION;
   _key: string;
 }
 
