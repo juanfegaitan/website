@@ -142,6 +142,9 @@ export default defineType({
         defineArrayMember({
           type: "mansorySection",
         }),
+        defineArrayMember({
+          type: "gallerySection",
+        }),
       ],
     }),
   ],

@@ -133,7 +133,16 @@ export default defineType({
           type: "lastEntriesSection",
         }),
         defineArrayMember({
+          type: "gridSection",
+        }),
+        defineArrayMember({
           type: "propertiesSection",
+        }),
+        defineArrayMember({
+          type: "mansorySection",
+        }),
+        defineArrayMember({
+          type: "gallerySection",
         }),
       ],
     }),
