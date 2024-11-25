@@ -18,7 +18,7 @@ export function CallToActionSectionLayout({ data }: Props) {
           <CustomPortableText value={data.title as any} />
         </div>
 
-        <div className="text-xl  w-full lg:w-3/4 text-center text-gray-600">
+        <div className="text-xl w-full lg:w-3/4 text-center text-gray-600">
           <CustomPortableText value={data.description as any} />
         </div>
 
