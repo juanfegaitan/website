@@ -41,10 +41,6 @@ export function MarketsListLayout({ data }: Props) {
               <div className="flex flex-col-reverse items-center gap-12 pt-20 lg:flex-row">
                 <div className="w-full lg:w-1/2">
                   <div>
-                    <h2 className="text-3xl font-bold text-primary mb-8">
-                      {market.title}
-                    </h2>
-
                     <CustomPortableText value={market.description as any} />
 
                     <div className="grid mt-12 gap-8">

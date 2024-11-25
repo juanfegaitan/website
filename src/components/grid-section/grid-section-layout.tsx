@@ -25,16 +25,16 @@ export function GridSectionLayout({ data }: Props) {
 
           return (
             <div key={item._key} className="flex gap-4 items-start">
-              <div className="relative size-10 rounded-lg flex-shrink-0 overflow-hidden">
-                {imageURL && (
+              {imageURL && (
+                <div className="relative size-10 rounded-lg flex-shrink-0 overflow-hidden">
                   <Image
                     src={imageURL}
                     fill
                     alt={item.image?.alt ?? ""}
                     className="w-full h-48 object-cover"
                   />
-                )}
-              </div>
+                </div>
+              )}
 
               <div className="flex flex-col gap-2 flex-1">
                 <h3 className="text-lg font-bold">{item.title}</h3>
