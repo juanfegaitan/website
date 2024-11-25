@@ -52,7 +52,7 @@ export default async function SearchPage(props: SearchPageProps) {
 
   return (
     <div className="py-16">
-      <h1 className="text-title font-bold text-center mb-12">
+      <h1 className="text-4xl font-bold text-center mb-12">
         Resultados de la búsqueda
       </h1>
 

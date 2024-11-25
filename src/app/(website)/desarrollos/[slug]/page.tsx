@@ -76,7 +76,7 @@ export default async function ListingDetailPage(props: Props) {
         {data?.location?.city || data?.location?.state},{" "}
         {data?.location?.country}
       </div>
-      <h1 className="text-sub-title font-bold">{data?.name}</h1>
+      <h1 className="text-2xl font-bold">{data?.name}</h1>
 
       <section className="flex flex-col lg:flex-row items-stretch gap-4 mt-8">
         <div className="bg-muted-foreground/10 rounded px-4 md:py-8 w-full lg:w-3/5 flex flex-col md:flex-row">

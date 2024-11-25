@@ -51,7 +51,7 @@ export default async function BlogDetail({ params }: Props) {
       )}
 
       <div className=" mx-auto max-w-4xl">
-        <div className="text-sub-title leading-sub-title font-bold text-center mt-8">
+        <div className="text-4xl font-bold text-center mt-8">
           {blog?.title}
         </div>
 

@@ -17,7 +17,7 @@ export function AccordionSectionLayout({ data }: Props) {
 
   return (
     <section className="flex flex-col items-center justify-between gap-8 py-12">
-      <div className="text-sub-title leading-sub-title font-bold text-center">
+      <div className="text-4xl font-bold text-center">
         {data.title}
       </div>
 

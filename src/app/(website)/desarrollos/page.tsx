@@ -21,7 +21,7 @@ export default async function Invest() {
 
   return (
     <div className="flex flex-col gap-4 py-16">
-      <div className="text-sub-title leading-sub-title font-bold text-center">
+      <div className="text-4xl font-bold text-center">
         {investPage.title}
       </div>
 

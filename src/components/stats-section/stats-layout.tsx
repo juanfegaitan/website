@@ -17,7 +17,7 @@ export function StatsLAyout({ data }: Props) {
       className="bg-gray-50 py-12 w-full full-width"
       style={{ backgroundColor: data.bgColor?.hex }}
     >
-      <h2 className={cn("text-sub-title font-bold text-center ")}>
+      <h2 className={cn("text-4xl font-bold text-center ")}>
         {data?.title}
       </h2>
 

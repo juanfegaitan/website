@@ -22,7 +22,7 @@ export function TestimonialsLayout({ data }: Props) {
 
   return (
     <section className="bg-accent py-12 w-full full-width">
-      <div className="text-sub-title leading-sub-title font-bold text-center">
+      <div className="text-4xl font-bold text-center">
         {data?.title}
       </div>
 
@@ -74,7 +74,7 @@ export function TestimonialsLayout({ data }: Props) {
                       />
                     )}
 
-                    <div className="font-bold text-xl ">
+                    <div className="font-bold text-xl">
                       {testimonial.name}
                     </div>
 

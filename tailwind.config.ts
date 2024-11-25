@@ -33,20 +33,6 @@ const config: Config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      fontSize: {
-        title: "clamp(2.1875rem, 1.6397rem + 2.2472vw, 3.4375rem)",
-        "sub-title": "clamp(2.1875rem, 1.9136rem + 1.1236vw, 2.8125rem)",
-        metrics: "clamp(3.125rem, 2.309vw + 2.527rem, 4.375rem)",
-        body1: "clamp(1.125rem, 0.231vw + 1.065rem, 1.25rem)",
-        body2: "clamp(1rem, 0.231vw + 0.94rem, 1.125rem)",
-      },
-      lineHeight: {
-        title: "clamp(2.406rem, 4.446vw + 1.256rem, 4.813rem)",
-        "sub-title": "clamp(2.5rem, 1.9136rem + 1.1236vw, 3.125rem)",
-        metrics: "clamp(4.375rem, 2.425vw + 3.748rem, 5.688rem)",
-        body1: "clamp(1.575rem, 0.323vw + 1.491rem, 1.75rem)",
-        body2: "clamp(1.125rem, 0.231vw + 1.065rem, 1.25rem)",
-      },
       fontFamily: {
         sans: ["var(--font-montserrat)", ...fontFamily.sans],
       },

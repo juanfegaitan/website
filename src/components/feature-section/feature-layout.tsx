@@ -35,10 +35,10 @@ export function FeatureSectionLayout({ data }: Props) {
           },
         )}
       >
-        <h2 className="text-h2 leading-h2 font-semibold">{data?.title}</h2>
+        <h2 className="text-2xl font-semibold">{data?.title}</h2>
 
         {!!data?.content && (
-          <div className="text-body1 leading-body1 mt-8 w-full lg:w-3/4">
+          <div className="text-lg mt-8 w-full lg:w-3/4">
             <CustomPortableText value={data?.content as any} />
           </div>
         )}

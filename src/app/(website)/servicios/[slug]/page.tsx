@@ -44,7 +44,7 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <div className="py-16">
-      <h1 className="text-title font-bold text-center mb-12">
+      <h1 className="text-4xl font-bold text-center mb-12">
         {initial.data.title}
       </h1>
 

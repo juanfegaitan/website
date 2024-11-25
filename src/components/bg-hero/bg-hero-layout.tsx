@@ -28,7 +28,7 @@ export function BgHeroLayout({ hero }: Props) {
       <div className="absolute inset-0 z-10 bg-black bg-opacity-50" />
 
       <div className="h-full w-full mx-auto max-w-2xl text-center z-20 relative gid place-content-center">
-        <h1 className="text-white text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-center">
+        <h1 className="text-white text-5xl font-bold text-center">
           {hero?.title}
         </h1>
 

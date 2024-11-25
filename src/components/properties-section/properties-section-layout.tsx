@@ -14,7 +14,7 @@ export function PropertiesSectionLayout({ data, investPage }: Props) {
 
   return (
     <section className={cn("py-8 md:py-12")}>
-      <h2 className="text-sub-title leading-sub-title font-bold text-center">
+      <h2 className="text-4xl font-bold text-center">
         {data?.title}
       </h2>
 

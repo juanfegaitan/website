@@ -67,25 +67,25 @@
 }
 
 h1 {
-  @apply text-4xl lg:text-6xl font-bold lg:leading-tight leading-tight;
+  @apply text-4xl lg:text-5xl font-bold lg:leading-tight leading-tight;
 }
 
 h2 {
-  @apply text-3xl lg:text-5xl font-bold lg:leading-tight leading-tight;
+  @apply text-3xl lg:text-4xl font-bold lg:leading-tight leading-tight;
 }
 
 h3 {
-  @apply text-2xl lg:text-4xl font-bold lg:leading-tight leading-tight;
+  @apply text-2xl lg:text-3xl font-bold lg:leading-tight leading-tight;
 }
 
 h4 {
-  @apply text-xl lg:text-3xl font-bold lg:leading-tight leading-tight;
+  @apply text-xl lg:text-2xl font-bold lg:leading-tight leading-tight;
 }
 
 h5 {
-  @apply text-lg lg:text-2xl font-bold lg:leading-tight leading-tight;
+  @apply text-lg lg:text-xl font-bold lg:leading-tight leading-tight;
 }
 
 h6 {
-  @apply text-base lg:text-xl font-bold lg:leading-tight leading-tight;
+  @apply text-base lg:text-lg font-bold lg:leading-tight leading-tight;
 }

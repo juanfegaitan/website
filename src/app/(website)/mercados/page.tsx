@@ -19,7 +19,7 @@ export default async function MarketPage() {
 
   return (
     <div className="flex flex-col gap-4 py-16">
-      <h1 className="text-title leading-sub-title font-bold text-center">
+      <h1 className="text-4xl  font-bold text-center">
         {marketPage.title}
       </h1>
 

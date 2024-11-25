@@ -21,7 +21,7 @@ export function LastEntriesSectionLayout({
 
   return (
     <section className="bg-white py-12 w-full full-width">
-      <div className="text-sub-title leading-sub-title font-bold text-center">
+      <div className="text-4xl font-bold text-center">
         {data.title}{" "}
       </div>
       {!!data.description && (
@@ -65,7 +65,7 @@ export function LastEntriesSectionLayout({
                     </div>
 
                     <div className="flex flex-col items-center justify-center text-center">
-                      <div className="font-bold text-lg md:text-xl lg:text-2xl mt-6">
+                      <div className="font-bold text-xl mt-6">
                         {post.title}
                       </div>
                     </div>
