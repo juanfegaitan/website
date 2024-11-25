@@ -613,6 +613,8 @@ export const postBySlug = groq`
 export const propertiesQuery = groq`
   *[_type == "property"]{
     ...,
+    annualProjection,
+    appreciation,
     _id,
     seo,
     description,

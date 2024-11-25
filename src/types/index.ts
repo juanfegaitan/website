@@ -499,6 +499,7 @@ export interface PropertyDocument {
   characteristics?: ProjectCharacteristics[];
   highlight?: boolean;
   highlightText?: string;
+  annualProjection?: number;
   location?: {
     _type: "projectLocation";
     geopoint?: {
@@ -512,6 +513,8 @@ export interface PropertyDocument {
     map?: Image;
   };
   seo?: Seo;
+  appreciation?: number;
+  currency?: string;
   similarProperties?: PropertyDocument[];
   kindOfDepartments?: KindOfDepartment[];
 }

@@ -31,6 +31,26 @@ export default defineType({
       validation: (rule) => rule.required(),
     },
     {
+      name: "currency",
+      title: "Moneda",
+      type: "string",
+      validation: (rule) => rule.required(),
+    },
+    {
+      // appreciation
+      name: "appreciation",
+      title: "Plusvalía proyectada",
+      type: "number",
+      validation: (rule) => rule.required(),
+    },
+    // Proyección anual
+    {
+      name: "annualProjection",
+      title: "Proyección anual",
+      type: "number",
+      validation: (rule) => rule.required(),
+    },
+    {
       name: "highlight",
       title: "Destacado",
       type: "boolean",
@@ -74,12 +94,6 @@ export default defineType({
           type: "block",
         },
       ],
-      validation: (rule) => rule.required(),
-    },
-    {
-      name: "capitalGains",
-      title: "Plusvalía de la zona",
-      type: "number",
       validation: (rule) => rule.required(),
     },
     {

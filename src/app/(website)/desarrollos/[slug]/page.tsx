@@ -4,6 +4,7 @@ import { CustomPortableText } from "@/components/shared/CustomPortableText";
 import { _generateMetadata, urlForImage } from "@/sanity/lib/utils";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { loadInvestPage, loadProperty } from "@/sanity/loader/loadQuery";
+import dayjs from "dayjs";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -26,6 +27,48 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export function generateStaticParams() {
   return generateStaticSlugs("property");
 }
+
+
+function shortNumber(num?: number, currency?: string) {
+  if (!num) {
+    return "";
+  }
+
+  if (num > 999 && num < 1000000) {
+    return formatPrice(num / 1_000, currency) + "K" + " " + (currency ?? 'MXN'); // convert to K for number from > 1000 < 1 million
+  } else if (num > 1000000) {
+    return formatPrice(num / 1_000_000, currency) + "M" + " " + (currency ?? 'MXN');; // convert to M for number from > 1 million
+  } else if (num < 900) {
+    return num; // if value < 1000, nothing to do
+  }
+}
+
+function formatPrice(price: number | undefined | null, currency?: string) {
+  if (!price) {
+    return "";
+  }
+
+  return price.toLocaleString("es-MX", {
+    style: "currency",
+    currency: currency ?? "MXN",
+    minimumFractionDigits: 0,
+  })
+}
+
+const formatDate = (date?: string) => {
+  if (!date) {
+    return "";
+  }
+
+  const parsedDate = dayjs(date);
+
+
+  return new Intl.DateTimeFormat("es-MX", {
+    month: "long",
+    year: "numeric",
+  }).format(parsedDate.toDate());
+}
+
 
 export default async function ListingDetailPage(props: Props) {
   const { data } = await loadProperty(props.params.slug);
@@ -84,11 +127,7 @@ export default async function ListingDetailPage(props: Props) {
             <div>
               <div className="">Precio</div>
               <div className="text-2xl font-bold">
-                {data?.price?.toLocaleString("es-MX", {
-                  style: "currency",
-                  currency: "USD",
-                  minimumFractionDigits: 0,
-                })}
+                {shortNumber(data?.price, data?.currency)}
               </div>
             </div>
 
@@ -106,7 +145,7 @@ export default async function ListingDetailPage(props: Props) {
 
             <div>
               <div className="">Plusvalía de la zona</div>
-              <div className="text-2xl font-bold">{data?.capitalGain}</div>
+              <div className="text-2xl font-bold">{data?.appreciation ?? 0}</div>
             </div>
           </div>
 
@@ -114,11 +153,7 @@ export default async function ListingDetailPage(props: Props) {
             <div>
               <div className="">Proyección anual</div>
               <div className="text-2xl font-bold">
-                {data?.price?.toLocaleString("es-MX", {
-                  style: "currency",
-                  currency: "USD",
-                  minimumFractionDigits: 0,
-                })}
+                {shortNumber(data?.annualProjection, data?.currency)}
               </div>
             </div>
           </div>

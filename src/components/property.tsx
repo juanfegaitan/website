@@ -1,7 +1,10 @@
 import { resolveHref, urlForImage } from "@/sanity/lib/utils";
 import { InvestPagePayload, PropertyDocument } from "@/types";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
+
+dayjs.locale("es");
 
 type Props = {
   property: PropertyDocument;
@@ -23,16 +26,44 @@ function calcMonths(date: string) {
   );
 }
 
-function formatPrice(price: number | undefined | null) {
+function shortNumber(num?: number, currency?: string) {
+  if (!num) {
+    return "";
+  }
+
+  if (num > 999 && num < 1000000) {
+    return formatPrice(num / 1_000, currency) + "K" + " " + (currency ?? 'MXN'); // convert to K for number from > 1000 < 1 million
+  } else if (num > 1000000) {
+    return formatPrice(num / 1_000_000, currency) + "M" + " " + (currency ?? 'MXN');; // convert to M for number from > 1 million
+  } else if (num < 900) {
+    return num; // if value < 1000, nothing to do
+  }
+}
+
+function formatPrice(price: number | undefined | null, currency?: string) {
   if (!price) {
     return "";
   }
 
   return price.toLocaleString("es-MX", {
     style: "currency",
-    currency: "USD",
+    currency: currency ?? "MXN",
     minimumFractionDigits: 0,
-  });
+  })
+}
+
+const formatDate = (date?: string) => {
+  if (!date) {
+    return "";
+  }
+
+  const parsedDate = dayjs(date);
+
+
+  return new Intl.DateTimeFormat("es-MX", {
+    month: "long",
+    year: "numeric",
+  }).format(parsedDate.toDate());
 }
 
 export function Property({ property, investPage }: Props) {
@@ -68,7 +99,7 @@ export function Property({ property, investPage }: Props) {
         )}
       </div>
 
-      <div className="p-6 flex flex-col items-start justify-center text-left text-lg lg:text-xl">
+      <div className="p-6 flex flex-col items-start justify-center text-left text-lg">
         <strong className="text-xl lg:text-2xl">{property.name}</strong>
         <div>
           {property.location?.city || property.location?.state},{" "}
@@ -76,8 +107,8 @@ export function Property({ property, investPage }: Props) {
         </div>
 
         <div className="flex items-center justify-between gap-2 w-full mb-1 mt-8">
-          <div>Valorización:</div>
-          <strong>{property.capitalGain ?? 0}%*</strong>
+          <div>Plusvalía Proyectada:</div>
+          <strong>{property.appreciation ?? 0}%</strong>
         </div>
 
         <div className="flex items-center justify-between gap-2 w-full mb-1">
@@ -87,14 +118,14 @@ export function Property({ property, investPage }: Props) {
 
         <div className="flex items-center justify-between gap-2 w-full">
           <div>Entrega:</div>
-          <strong>{calcMonths(property.deliveryDate ?? "")} meses</strong>
+          <strong className="first-letter:capitalize">{formatDate(property.deliveryDate)}</strong>
         </div>
 
         <div className="w-full h-px bg-primary my-4" />
 
         <div className="flex items-center justify-between gap-1 w-full">
           <div className="flex-shrink-0">Precio desde:</div>
-          <strong className="truncate">{formatPrice(property.price)}</strong>
+          <strong className="truncate">{shortNumber(property.price, property.currency)}</strong>
         </div>
       </div>
     </Link>
