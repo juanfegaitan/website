@@ -45,8 +45,8 @@ export function PostsLayout({ posts, blogPage }: Props) {
               className="object-cover w-full aspect-video rounded-2xl"
             />
 
-            <div className="p-6 py-2 flex flex-col items-center justify-center text-center">
-              <div className="font-bold text-3xl mt-6">{post.title}</div>
+            <div className="p-6 py-0 flex flex-col items-center justify-center text-center">
+              <div className="font-bold text-xl">{post.title}</div>
             </div>
           </Link>
         );
