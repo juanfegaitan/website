@@ -111,7 +111,7 @@ export interface FeatureSection {
 export interface CtaSection {
   cta?: Cta;
   description?: PortableTextBlock[];
-  title?: string;
+  title?: PortableTextBlock[];
   _type: SectionsList.CTA_SECTION;
   _key: string;
 }
