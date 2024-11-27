@@ -55,7 +55,7 @@ const Navbar = (props: Props) => {
               </p>
 
               {!!logo && (
-                <div className="w-24 h-16 relative">
+                <div className="aspect-video h-24 relative">
                   <Image
                     src={logo}
                     fill
