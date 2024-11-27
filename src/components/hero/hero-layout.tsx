@@ -62,7 +62,7 @@ export function HeroLayout({ hero }: Props) {
               <CarouselItem
                 key={index}
                 className={cn(
-                  "flex items-center flex-col-reverse lg:flex-row gap-12 lg:gap-4",
+                  "flex items-center flex-col-reverse lg:flex-row gap-12",
                   {
                     "lg:flex-row-reverse": !isLeft,
                     "lg:flex-row": isLeft,
