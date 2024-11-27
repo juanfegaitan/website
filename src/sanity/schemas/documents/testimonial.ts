@@ -26,7 +26,6 @@ export default defineType({
       type: "text",
       name: "review",
       title: "Review",
-      validation: (rule) => rule.required(),
     }),
     defineField({
       type: "customImage",

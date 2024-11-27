@@ -32,6 +32,7 @@ export function TestimonialsLayout({ data }: Props) {
             {data.testimonials?.map((testimonial, index) => {
               const image = testimonial.image?.image;
 
+
               const imageURL =
                 image &&
                 urlForImage(image)?.height(560).width(420).fit("crop").url();
@@ -58,38 +59,36 @@ export function TestimonialsLayout({ data }: Props) {
                       </div>
                     )}
 
-                    {imageURL && !testimonial.video && (
-                      <Image
-                        src={imageURL}
-                        width={54}
-                        height={54}
-                        alt={
-                          testimonial.image?.alt ??
-                          testimonial.name ??
-                          "Testimonial Image"
-                        }
-                        blurDataURL={image.asset.metadata.lqip}
-                        placeholder="blur"
-                        className="rounded-full size-12 object-cover aspect-square flex-shrink-0"
-                      />
-                    )}
 
-                    <div className="font-bold text-xl">
-                      {testimonial.name}
+
+                    <div className="flex items-center gap-6">
+                      <div className="w-16 h-16 rounded-full relative flex-shrink-0 overflow-hidden">
+                        {imageURL && (
+                          <Image
+                            src={imageURL}
+                            fill
+                            alt={
+                              testimonial.image?.alt ??
+                              testimonial.name ??
+                              "Testimonial Image"
+                            }
+                            blurDataURL={image.asset.metadata.lqip}
+                            placeholder="blur"
+                          />
+                        )}
+                      </div>
+
+                      <div className="flex flex-col items-start text-left">
+                        <div className="font-semibold">
+                          {testimonial.name}
+                        </div>
+
+
+                        <div className="text-base">{testimonial.subtitle}</div>
+                      </div>
                     </div>
 
-                    {/* subtitle */}
-                    {!!testimonial.subtitle && (
-                      <div className="text-base">{testimonial.subtitle}</div>
-                    )}
-                    {/* <div>
-                      {Array.from({ length: 5 }).map((_, index) => (
-                        <span key={index} className="text-yellow-400">
-                          ⭐️
-                        </span>
-                      ))}
-                    </div> */}
-                    <div className="text-base">{testimonial.review}</div>
+
                   </div>
                 </CarouselItem>
               );
