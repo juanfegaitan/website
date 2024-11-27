@@ -21,7 +21,7 @@ export function TestimonialsLayout({ data }: Props) {
   if (!data) return null;
 
   return (
-    <section className="bg-accent py-12 w-full full-width">
+    <section className="py-12 w-full full-width">
       <div className="text-4xl font-bold text-center">
         {data?.title}
       </div>
@@ -42,7 +42,7 @@ export function TestimonialsLayout({ data }: Props) {
                   key={index}
                   className="md:basis-1/2 lg:basis-1/3 pl-12"
                 >
-                  <div className="flex flex-col gap-4 items-center text-center">
+                  <div className="flex flex-col gap-4 items-start text-left">
                     {testimonial.video && (
                       <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden">
                         <ReactPlayer
@@ -61,7 +61,7 @@ export function TestimonialsLayout({ data }: Props) {
 
 
 
-                    <div className="flex items-center gap-6">
+                    <div className="flex  gap-6">
                       <div className="w-16 h-16 rounded-full relative flex-shrink-0 overflow-hidden">
                         {imageURL && (
                           <Image
@@ -78,7 +78,7 @@ export function TestimonialsLayout({ data }: Props) {
                         )}
                       </div>
 
-                      <div className="flex flex-col items-start text-left">
+                      <div className="flex flex-col items-start justify-center text-left">
                         <div className="font-semibold">
                           {testimonial.name}
                         </div>
