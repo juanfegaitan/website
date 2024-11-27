@@ -31,7 +31,7 @@ export function StatsLAyout({ data }: Props) {
               return (
                 <div
                   key={index}
-                  className="py-4 lg:px-6 flex items-center lg:text-center lg:flex-col gap-4"
+                  className="py-4 flex items-center lg:text-center lg:flex-col gap-4"
                 >
                   <div className="size-10 relative">
                     {image && (
