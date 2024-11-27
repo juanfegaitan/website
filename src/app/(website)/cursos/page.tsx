@@ -18,7 +18,7 @@ export default function Course() {
   return (
     <div className="flex flex-col">
       <Suspense fallback={<HeroSkeleton />}>
-        <BgHero load={Singletons.COURSE} />
+        <BgHero load={Singletons.COURSE} className="lg:aspect-[16/4]" />
       </Suspense>
 
       <Suspense fallback={<HeroSkeleton />}>

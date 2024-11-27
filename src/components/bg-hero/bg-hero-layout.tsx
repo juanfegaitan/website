@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/cn";
 import { urlForImage } from "@/sanity/lib/utils";
 import { BgHero } from "@/types";
 import dynamic from "next/dynamic";
@@ -16,19 +17,19 @@ const ReactPlayer = dynamic(() => import("react-player/lazy"), {
 
 type Props = {
   hero?: BgHero;
-};
+} & React.HTMLAttributes<HTMLElement>;
 
-export function BgHeroLayout({ hero }: Props) {
+export function BgHeroLayout({ hero, className, ...props }: Props) {
   const image = hero?.bg;
 
   const imageUrl = image && urlForImage(image)?.url();
-  console.log(hero)
+
   if (!hero) {
     return null;
   }
 
   return (
-    <header className="relative full-width aspect-square md:aspect-video lg:aspect-[16/5] overflow-hidden">
+    <header className={cn("relative full-width aspect-square md:aspect-video lg:aspect-[16/5] overflow-hidden", className)} {...props}>
       {
         hero.cta && <div className="flex items-center justify-end h-full relative z-20 main_container">
           <div className="w-1/2 h-full flex flex-col items-start justify-center">
