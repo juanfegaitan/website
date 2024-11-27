@@ -21,7 +21,7 @@ export function NewsletterSectionLayout({ data }: Props) {
 
   return (
     <section className="bg-gray-50 py-12 w-full full-width">
-      <div className="text-4xl font-bold text-center">
+      <div className="text-4xl text-center">
         {data.title}{" "}
       </div>
 

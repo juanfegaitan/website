@@ -14,7 +14,7 @@ export function KnowMoreSectionLayout({ data }: Props) {
 
   return (
     <section className="bg-gray-200 py-12 mt-24 w-full full-width">
-      <div className="text-4xl font-bold text-center">
+      <div className="text-4xl text-center">
         {data.title}{" "}
       </div>
       {!!data.description && (

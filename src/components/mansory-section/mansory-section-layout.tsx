@@ -31,7 +31,7 @@ export function MansorySectionLayout({ data }: Props) {
 
   return (
     <section className="bg-white py-12 w-full full-width">
-      <div className="text-4xl font-bold text-center">
+      <div className="text-4xl text-center">
         {data.title}{" "}
       </div>
       {!!data.description && (
