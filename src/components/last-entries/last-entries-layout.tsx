@@ -65,7 +65,7 @@ export function LastEntriesSectionLayout({
                     </div>
 
                     <div className="flex flex-col items-center justify-center text-center">
-                      <div className="font-bold text-xl mt-6">
+                      <div className="font-medium text-xl mt-6">
                         {post.title}
                       </div>
                     </div>

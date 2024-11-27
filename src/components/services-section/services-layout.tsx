@@ -58,7 +58,7 @@ export function ServicesSectionLayout({ data }: Props) {
                         className="object-cover"
                       />
                     </div>
-                    <div className="text-2xl text-left lg:text-center md:text-3xl font-bold mt-4">
+                    <div className="text-2xl text-left lg:text-center md:text-3xl font-medium mt-4">
                       {service.title}
                     </div>
                     {!!service.shortDescription && (
