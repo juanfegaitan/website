@@ -323,6 +323,7 @@ export interface BgHero {
   bgVideo?: string;
   subtitle?: PortableTextBlock[];
   bg?: CustomImage["image"];
+  cta?: Cta;
 }
 
 export interface Service {

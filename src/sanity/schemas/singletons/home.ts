@@ -26,6 +26,11 @@ export default defineType({
       title: "Hero section",
       type: "hero",
     }),
+    defineField({
+      name: "bgHero",
+      title: "Hero",
+      type: "bgHero",
+    }),
     // define array of sections
     defineField({
       name: "sections",

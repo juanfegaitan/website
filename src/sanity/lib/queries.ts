@@ -253,6 +253,17 @@ const DEFAULT_QUERY = `
     title,
   },
   bgHero{
+    ...,
+    cta{
+      externalLink,
+      link->{
+        _type,
+        "slug": slug.current,
+        title
+      },
+      title,
+      variant,
+    },
     title,
     "bgVideo": bgVideo.asset->url,
     subtitle,

@@ -36,6 +36,11 @@ export default defineType({
       title: "Background",
       type: "image",
     }),
+    defineField({
+      name: "cta",
+      title: "Call to Action",
+      type: "cta",
+    }),
   ],
   preview: {
     select: {
