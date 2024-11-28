@@ -18,7 +18,7 @@ export default async function AboutMe() {
 
   return (
     <div className="flex flex-col py-16">
-      <h1 className="text-center text-5xl font-bold">{data?.title}</h1>
+      <h1 className="text-center text-4xl font-bold">{data?.title}</h1>
       <Suspense fallback={<HeroSkeleton />}>
         <Hero load={Singletons.ABOUT} />
       </Suspense>
