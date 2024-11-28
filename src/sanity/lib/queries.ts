@@ -637,6 +637,30 @@ export const postsQuery = groq`
   }
 `;
 
+export const postsTotalQuery = groq`
+  count(*[_type == "post" && slug.current != $slug])
+`;
+
+export const postsPageQuery = groq`
+  *[_type == "post" && slug.current != $slug] | order(publishedAt desc) [$start...$end] {
+    ...,
+    _id,
+    title,
+    "slug": slug.current,
+    seo,
+    content,
+    image{
+      ...,
+      image{
+        asset->{
+          ...,
+          "_ref": _id,
+        },
+      },
+    }
+  }
+`;
+
 export const postBySlug = groq`
   *[_type == "post" && slug.current == $slug][0]{
     ...,
