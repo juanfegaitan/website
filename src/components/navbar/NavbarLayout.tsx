@@ -31,7 +31,7 @@ const Navbar = (props: Props) => {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <nav className="h-28 bg-primary text-background flex items-center justify-between">
+      <nav className="h-24 bg-primary text-background flex items-center justify-between">
         <div className="main_container h-full flex items-center justify-between">
           <div className="flex items-center gap-4 ">
             <SheetTrigger asChild>
@@ -55,7 +55,7 @@ const Navbar = (props: Props) => {
               </p>
 
               {!!logo && (
-                <div className="aspect-video h-24 relative">
+                <div className="aspect-video h-32 relative">
                   <Image
                     src={logo}
                     fill
