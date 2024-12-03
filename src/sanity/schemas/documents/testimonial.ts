@@ -34,9 +34,12 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      type: "url",
+      type: "file",
       name: "video",
       title: "Video",
+      options: {
+        accept: "video/*",
+      },
     }),
   ],
   preview: {

@@ -14,9 +14,15 @@ export async function generateMetadata(): Promise<Metadata> {
   return _generateMetadata(data.seo);
 }
 
-export default function Blog() {
+export default async function Blog() {
+  const { data } = await loadBlogPage();
+
   return (
     <div className="flex flex-col gap-4 py-16">
+      <h1 className="text-4xl  font-bold text-center">
+        {data.title}
+      </h1>
+
       <Suspense fallback={<HeroSkeleton />}>
         <Hero load={Singletons.BLOG} />
       </Suspense>

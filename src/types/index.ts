@@ -389,7 +389,7 @@ export interface TestimonialPayload {
   name?: string;
   review?: string;
   subtitle?: string;
-  video?: string;
+  videoUrl?: string;
 }
 
 type GalleryImage = CustomImage["image"] & {

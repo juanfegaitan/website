@@ -216,7 +216,7 @@ export default async function BlogDetail({ params, searchParams }: Props) {
       )}
 
       <div className=" mx-auto max-w-4xl">
-        <div className="text-4xl font-bold text-center mt-8">
+        <div className="text-4xl font-bold text-left mt-8">
           {blog?.title}
         </div>
 

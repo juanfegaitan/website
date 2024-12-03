@@ -32,7 +32,6 @@ export function TestimonialsLayout({ data }: Props) {
             {data.testimonials?.map((testimonial, index) => {
               const image = testimonial.image?.image;
 
-
               const imageURL =
                 image &&
                 urlForImage(image)?.height(560).width(420).fit("crop").url();
@@ -43,10 +42,10 @@ export function TestimonialsLayout({ data }: Props) {
                   className="md:basis-1/2 lg:basis-1/3 pl-12"
                 >
                   <div className="flex flex-col gap-4 items-start text-left">
-                    {testimonial.video && (
+                    {testimonial.videoUrl && (
                       <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden">
                         <ReactPlayer
-                          url={testimonial.video}
+                          url={testimonial.videoUrl}
                           title={testimonial.name}
                           width="100%"
                           height="100%"
