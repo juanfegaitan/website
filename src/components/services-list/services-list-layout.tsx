@@ -47,7 +47,7 @@ export function ServicesListLayout({ services, servicesPage }: Props) {
               />
             </div>
             <div className="flex flex-col gap-4 text-left w-full lg:w-1/2">
-              <div className="font-bold text-xl md:text-2xl">
+              <div className="font-normal text-xl md:text-2xl">
                 {service.title}
               </div>
 
