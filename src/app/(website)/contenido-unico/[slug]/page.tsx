@@ -103,7 +103,7 @@ function getPageNumber(page: string | undefined, totalItems: number = 0, itemsPe
   return pageNumber;
 }
 
-const PER_PAGE = 3;
+const PER_PAGE = 1;
 
 async function BlogListing({ slug, currentPage: currentPageProp }: BlogListingProps) {
 
@@ -171,7 +171,7 @@ async function BlogListing({ slug, currentPage: currentPageProp }: BlogListingPr
               key={page}
               size="sm"
               className={cn("w-10 h-10 aria-[disabled=true]:pointer-events-none", {
-                "bg-primary text-white": page === currentPage,
+                "bg-secondary text-secondary-foreground": page === currentPage,
                 'bg-white text-primary hover:bg-primary hover:text-white': page !== currentPage
               })}
               asChild
