@@ -51,7 +51,7 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
 
       {
         !hero.cta && <div className="h-full w-full mx-auto max-w-2xl text-center z-20 relative gid place-content-center">
-          {hero?.title && <h1 className="text-white text-5xl font-bold text-center">
+          {hero?.title && <h1 className="text-white text-5xl font-normal text-center">
             {hero?.title}
           </h1>}
 
