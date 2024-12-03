@@ -55,7 +55,7 @@ const Navbar = (props: Props) => {
               </p>
 
               {!!logo && (
-                <div className="aspect-video h-24 relative">
+                <div className="aspect-video h-32 relative">
                   <Image
                     src={logo}
                     fill
@@ -81,7 +81,7 @@ const Navbar = (props: Props) => {
                 <li
                   key={href}
                   className={cn(
-                    " text-lg font-medium border-transparent border-b pb-1 transition-all hover:border-input duration-750",
+                    " text-sm font-medium border-transparent border-b pb-1 transition-all hover:border-input duration-750",
                     {
                       "border-input": isActive,
                     },

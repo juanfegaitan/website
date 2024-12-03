@@ -33,7 +33,7 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
       {
         hero.cta && <div className="flex items-center justify-end h-full relative z-20 main_container">
           <div className="w-full md:w-1/2 h-full flex flex-col items-start justify-center">
-            {hero?.title && <h1 className="text-white text-5xl font-bold text-center">
+            {hero?.title && <h1 className="text-white text-5xl font-normal text-center">
               {hero?.title}
             </h1>}
 
@@ -51,7 +51,7 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
 
       {
         !hero.cta && <div className="h-full w-full mx-auto max-w-2xl text-center z-20 relative gid place-content-center">
-          {hero?.title && <h1 className="text-white text-5xl font-bold text-center">
+          {hero?.title && <h1 className="text-white text-5xl font-normal text-center">
             {hero?.title}
           </h1>}
 
