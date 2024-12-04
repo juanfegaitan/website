@@ -41,6 +41,10 @@ export function CustomPortableText({
       },
     },
     marks: {
+      left: ({ children }: any) => <div className="text-left">{children}</div>,
+      center: ({ children }: any) => <div className="text-center w-full">{children}</div>,
+      right: ({ children }: any) => <div className="text-right">{children}</div>,
+      justify: ({ children }: any) => <div className="text-justify">{children}</div>,
       inlineicon: (data) => {
         return (
           <span className="inline-block align-middle">
