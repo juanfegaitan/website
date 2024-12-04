@@ -41,6 +41,11 @@ export default defineType({
         accept: "video/*",
       },
     }),
+    defineField({
+      name: "previewGif",
+      title: "Preview GIF",
+      type: "file",
+    }),
   ],
   preview: {
     select: {
