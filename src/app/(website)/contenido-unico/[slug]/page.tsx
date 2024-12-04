@@ -103,7 +103,7 @@ function getPageNumber(page: string | undefined, totalItems: number = 0, itemsPe
   return pageNumber;
 }
 
-const PER_PAGE = 1;
+const PER_PAGE = 3;
 
 async function BlogListing({ slug, currentPage: currentPageProp }: BlogListingProps) {
 
