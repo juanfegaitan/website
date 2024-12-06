@@ -440,7 +440,7 @@ export type Resource = {
   _id: string;
   description: PortableTextBlock[];
   image: CustomImage;
-  title: string;
+  title: PortableTextBlock[];
   _type: string;
   slug: string;
   seo?: Seo;

@@ -1,8 +1,10 @@
 import { resolveHref, urlForImage } from "@/sanity/lib/utils";
 import { Resource, ResourcesPagePayload } from "@/types";
+import { toPlainText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../button";
+import { CustomPortableText } from "../shared/CustomPortableText";
 
 type Props = {
   resources: Resource[] | null;
@@ -39,16 +41,16 @@ export function ResourcesLayout({ resources, resourcePage }: Props) {
               <Image
                 src={imageUrl}
                 fill
-                alt={resource.title}
+                alt={toPlainText(resource.title)}
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 blurDataURL={image.asset?.metadata?.lqip}
                 placeholder="blur"
                 className="object-cover object-top aspect-video w-full"
               />
             </div>
-            <div className="font-bold text-xl md:text-2xl">
-              {resource.title}
-            </div>
+
+            <CustomPortableText value={resource.title as any} />
+
             <Button>Descargar</Button>
           </Link>
         );

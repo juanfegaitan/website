@@ -1,3 +1,6 @@
+
+'use client'
+
 import {
   PortableText,
   type PortableTextBlock,
@@ -15,6 +18,7 @@ export function CustomPortableText({
   paragraphClasses?: string;
   value: PortableTextBlock[];
 }) {
+
   const components: PortableTextComponents = {
     listItem: {
       // ol
