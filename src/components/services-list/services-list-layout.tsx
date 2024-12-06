@@ -21,7 +21,7 @@ export function ServicesListLayout({ services, servicesPage }: Props) {
         const image = service?.image?.image;
 
         const imageUrl =
-          image && urlForImage(image)?.height(220).width(420).fit("crop").url();
+          image && urlForImage(image)?.url();
 
         const href = resolveHref(service._type, service.slug)?.replace(
           "/servicios",

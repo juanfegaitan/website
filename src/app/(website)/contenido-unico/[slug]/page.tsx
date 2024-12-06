@@ -126,7 +126,7 @@ async function BlogListing({ slug, currentPage: currentPageProp }: BlogListingPr
           const image = article?.image?.image;
 
           const imageUrl =
-            image && urlForImage(image)?.height(220).width(420).fit("crop").url();
+            image && urlForImage(image)?.url();
 
           const href = resolveHref(article._type, article.slug)?.replace(
             "/blog",
@@ -147,7 +147,6 @@ async function BlogListing({ slug, currentPage: currentPageProp }: BlogListingPr
                   blurDataURL={image.asset?.metadata?.lqip}
                   placeholder="blur"
                   quality={100}
-                  priority
                 />
               </div>
               <div className="flex-1 space-y-4">
