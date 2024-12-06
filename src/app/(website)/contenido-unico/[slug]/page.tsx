@@ -39,7 +39,7 @@ export function generateStaticParams() {
 
 function BlogListingSkeleton() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="py-8">
       <div className="space-y-8">
         {Array(3).fill(null).map((_, index) => (
           <div key={index} className="flex flex-col md:flex-row gap-6 items-start">
@@ -120,7 +120,7 @@ async function BlogListing({ slug, currentPage: currentPageProp }: BlogListingPr
   const pageNumbers = generatePageNumbers(total.data, PER_PAGE);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="py-8">
       <div className="space-y-8">
         {articles?.map((article, index) => {
           const image = article?.image?.image;
@@ -136,15 +136,18 @@ async function BlogListing({ slug, currentPage: currentPageProp }: BlogListingPr
           if (!imageUrl || !href) return null;
 
           return (
-            <div key={index} className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="relative w-full md:w-1/3 aspect-[4/3]">
+            <div key={index} className="flex flex-col md:flex-row gap-6 items-center">
+              <div className="relative w-full md:w-2/5 aspect-video">
                 <Image
                   src={imageUrl}
                   alt="Beach scene with coconut drink"
                   fill
+                  sizes="(min-width: 1024px) 420px, 100vw"
                   className="object-cover rounded-lg"
                   blurDataURL={image.asset?.metadata?.lqip}
                   placeholder="blur"
+                  quality={100}
+                  priority
                 />
               </div>
               <div className="flex-1 space-y-4">
@@ -212,10 +215,12 @@ export default async function BlogDetail({ params, searchParams }: Props) {
           placeholder="blur"
           blurDataURL={blog?.image?.image?.asset.metadata.lqip}
           className="object-cover w-full aspect-square lg:aspect-[16/6] rounded-2xl"
+          quality={100}
+          priority
         />
       )}
 
-      <div className=" mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         <div className="text-4xl font-bold text-left mt-8">
           {blog?.title}
         </div>
