@@ -43,7 +43,7 @@ function BlogListingSkeleton() {
       <div className="space-y-8">
         {Array(3).fill(null).map((_, index) => (
           <div key={index} className="flex flex-col md:flex-row gap-6 items-start">
-            <Skeleton className="w-full md:w-1/3 aspect-[4/3] rounded-lg" />
+            <Skeleton className="w-full md:w-1/2 aspect-[16/9] rounded-lg" />
             <div className="flex-1 space-y-4">
               <Skeleton className="h-8 w-3/4" />
               <Skeleton className="h-4 w-full" />
