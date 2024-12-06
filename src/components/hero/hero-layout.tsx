@@ -97,7 +97,7 @@ export function HeroLayout({ hero }: Props) {
                 </div>
 
                 <div className="relative w-full lg:w-1/2 aspect-square max-h-80 h-full overflow-hidden rounded-lg lg:max-h-none">
-                  <div className="relative h-full md:h-3/4 aspect-[3/4] mx-auto">
+                  <div className="relative h-full  aspect-[3/4] mx-auto">
                     {!!imageURL && (
                       <Image
                         src={imageURL}
