@@ -39,8 +39,8 @@ export default async function Resource(props: Props) {
     <div className="pt-16">
       <section className="w-full flex flex-col md:flex-row gap-4 items-center">
         <div className="w-full md:w-1/2 text-center md:text-left">
-          <div className="font-bold text-lg md:text-4xl">
-            {resource.data?.title}
+          <div className="text-lg md:text-4xl">
+            <CustomPortableText value={resource.data?.title as any} />
           </div>
 
           {!!resource.data?.description && (
