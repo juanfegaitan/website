@@ -4,6 +4,7 @@ import { _generateMetadata, urlForImage } from "@/sanity/lib/utils";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { loadResource } from "@/sanity/loader/loadQuery";
 import { Metadata } from "next";
+import { toPlainText } from "next-sanity";
 import Image from "next/image";
 
 type Props = {
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return _generateMetadata({
     description: page?.seo?.description ?? page?.description,
     image: page?.seo?.image ?? page?.image?.image,
-    title: page?.seo?.title ?? page?.title,
+    title: page?.seo?.title ?? page?.title ? toPlainText(page?.title) : "Recursos gratuitos",
   });
 }
 
