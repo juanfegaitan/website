@@ -3,7 +3,6 @@
 import { urlForImage } from "@/sanity/lib/utils";
 import { TestimonialSection } from "@/types";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { Carousel, CarouselContent, CarouselItem } from "../carousel";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), {
@@ -61,22 +60,6 @@ export function TestimonialsLayout({ data }: Props) {
 
 
                     <div className="flex  gap-6">
-                      <div className="w-16 h-16 rounded-full relative flex-shrink-0 overflow-hidden">
-                        {imageURL && (
-                          <Image
-                            src={imageURL}
-                            fill
-                            alt={
-                              testimonial.image?.alt ??
-                              testimonial.name ??
-                              "Testimonial Image"
-                            }
-                            blurDataURL={image.asset.metadata.lqip}
-                            placeholder="blur"
-                          />
-                        )}
-                      </div>
-
                       <div className="flex flex-col items-start justify-center text-left">
                         <div className="font-semibold">
                           {testimonial.name}

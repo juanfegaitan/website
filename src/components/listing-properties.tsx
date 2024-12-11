@@ -44,7 +44,7 @@ function filterProperties(
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
 
-      return JSONString.includes(country);
+      return JSONString.includes(country.toLowerCase().replaceAll("-", " "));
     })
     .filter((property) => {
       const price = property.price || 0;
