@@ -218,7 +218,7 @@ export default function Footer(props: FooterProps) {
           </Link>
 
           <div className="font-bold">
-            Juan felipe Gaitan . Todos los derechos reservados
+            Juan felipe Gaitán . Todos los derechos reservados
           </div>
         </div>
       </div>
