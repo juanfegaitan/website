@@ -132,7 +132,7 @@ export function useModalURLSync() {
       }
 
       updateURL(newSearchParams, {
-        history: "push",
+        history: "replace",
         shallow: true,
         scroll: false,
       });

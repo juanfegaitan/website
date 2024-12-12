@@ -2,7 +2,7 @@
 
 import { registerBasicForm } from "@/actions/basic-form";
 import { BasicFormSchema } from "@/schema/basic-form";
-import { useModal, useModalURLSync } from "@/store/modal";
+import { useModal } from "@/store/modal";
 import { ModalTypes } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
@@ -32,18 +32,6 @@ export function BasicForm() {
 
   const _onOpenChange = useModal((state) => state.onOpenChange);
 
-  useModalURLSync();
-
-  const { execute, status } = useAction(registerBasicForm, {
-    onSuccess: () => {
-      toast.success("Gracias por tu interés, te contactaremos pronto.");
-      _onOpenChange(false, ModalTypes.BASIC);
-    },
-    onError: () => {
-      toast.error("Hubo un error, por favor intenta de nuevo.");
-    },
-  });
-
   const form = useForm<z.infer<typeof BasicFormSchema>>({
     resolver: zodResolver(BasicFormSchema),
     defaultValues: {
@@ -51,6 +39,19 @@ export function BasicForm() {
       name: "",
     },
   });
+
+  const { execute, status } = useAction(registerBasicForm, {
+    onSuccess: () => {
+      toast.success("Gracias por tu interés, te contactaremos pronto.");
+      form.reset();
+      _onOpenChange(false, ModalTypes.BASIC);
+    },
+    onError: () => {
+      toast.error("Hubo un error, por favor intenta de nuevo.");
+    },
+  });
+
+
 
   function onSubmit(values: z.infer<typeof BasicFormSchema>) {
     execute(values);

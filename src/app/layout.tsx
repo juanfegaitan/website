@@ -1,3 +1,4 @@
+import { ModalProvider } from "@/components/ModalProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { fontMontserrat } from "@/config/fonts";
 import { cn } from "@/lib/cn";
@@ -67,6 +68,7 @@ export default async function RootLayout({
           fontMontserrat.variable,
         )}
       >
+        <ModalProvider />
         <Toaster />
         <BasicForm />
         {children}
