@@ -2,7 +2,7 @@
 
 import { registerBasicForm } from "@/actions/basic-form";
 import { BasicFormSchema } from "@/schema/basic-form";
-import { useModal } from "@/store/modal";
+import { useModal, useModalURLSync } from "@/store/modal";
 import { ModalTypes } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
@@ -31,6 +31,8 @@ export function BasicForm() {
   const isOpen = useModal((state) => state.modal === "basic");
 
   const _onOpenChange = useModal((state) => state.onOpenChange);
+
+  useModalURLSync();
 
   const { execute, status } = useAction(registerBasicForm, {
     onSuccess: () => {
