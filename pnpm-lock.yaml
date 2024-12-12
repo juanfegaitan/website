@@ -8,6 +8,12 @@ dependencies:
   "@ffmpeg-installer/ffmpeg":
     specifier: ^1.1.0
     version: 1.1.0
+  "@hookform/resolvers":
+    specifier: ^3.9.1
+    version: 3.9.1(react-hook-form@7.54.0)
+  "@next-safe-action/adapter-react-hook-form":
+    specifier: ^1.0.13
+    version: 1.0.13(@hookform/resolvers@3.9.1)(next-safe-action@7.9.9)(next@14.2.3)(react-dom@18.3.1)(react-hook-form@7.54.0)(react@18.3.1)
   "@next/env":
     specifier: ^14.2.3
     version: 14.2.3
@@ -20,6 +26,9 @@ dependencies:
   "@radix-ui/react-dialog":
     specifier: ^1.0.5
     version: 1.0.5(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
+  "@radix-ui/react-label":
+    specifier: ^2.1.0
+    version: 2.1.0(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
   "@radix-ui/react-popover":
     specifier: ^1.1.1
     version: 1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
@@ -119,6 +128,9 @@ dependencies:
   next:
     specifier: 14.2.3
     version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
+  next-safe-action:
+    specifier: 7.9.9
+    version: 7.9.9(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(zod@3.24.1)
   next-sanity:
     specifier: 9.1.0
     version: 9.1.0(@sanity/client@6.21.3)(@sanity/icons@2.11.8)(@sanity/types@3.42.1)(@sanity/ui@2.1.11)(next@14.2.3)(react@18.3.1)(sanity@3.42.1)(styled-components@6.1.11)
@@ -140,6 +152,9 @@ dependencies:
   react-dom:
     specifier: ^18
     version: 18.3.1(react@18.3.1)
+  react-hook-form:
+    specifier: ^7.54.0
+    version: 7.54.0(react@18.3.1)
   react-lite-youtube-embed:
     specifier: ^2.4.0
     version: 2.4.0(react-dom@18.3.1)(react@18.3.1)
@@ -164,6 +179,9 @@ dependencies:
   server-only:
     specifier: ^0.0.1
     version: 0.0.1
+  sonner:
+    specifier: ^1.7.1
+    version: 1.7.1(react-dom@18.3.1)(react@18.3.1)
   styled-components:
     specifier: ^6.1
     version: 6.1.11(react-dom@18.3.1)(react@18.3.1)
@@ -176,15 +194,18 @@ dependencies:
   tailwindcss-animate:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.4.3)
-  valibot:
-    specifier: ^0.42.0
-    version: 0.42.0(typescript@5.4.5)
   vaul:
     specifier: ^0.9.1
     version: 0.9.1(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
   vite-tsconfig-paths:
     specifier: ^4.3.2
     version: 4.3.2(typescript@5.4.5)(vite@4.5.3)
+  zod:
+    specifier: ^3.24.1
+    version: 3.24.1
+  zustand:
+    specifier: ^5.0.2
+    version: 5.0.2(@types/react@18.3.2)(react@18.3.1)
 
 devDependencies:
   "@types/node":
@@ -3184,6 +3205,17 @@ packages:
       }
     dev: false
 
+  /@hookform/resolvers@3.9.1(react-hook-form@7.54.0):
+    resolution:
+      {
+        integrity: sha512-ud2HqmGBM0P0IABqoskKWI6PEf6ZDDBZkFqe2Vnl+mTHCEHzr3ISjjZyCwTjC/qpL25JC9aIDkloQejvMeq0ug==,
+      }
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.54.0(react@18.3.1)
+    dev: false
+
   /@humanwhocodes/config-array@0.11.14:
     resolution:
       {
@@ -3336,6 +3368,27 @@ packages:
       }
     dependencies:
       "@lezer/common": 1.2.1
+    dev: false
+
+  /@next-safe-action/adapter-react-hook-form@1.0.13(@hookform/resolvers@3.9.1)(next-safe-action@7.9.9)(next@14.2.3)(react-dom@18.3.1)(react-hook-form@7.54.0)(react@18.3.1):
+    resolution:
+      {
+        integrity: sha512-J1zfdiVWcs6w388fKwdm0V/2UojU3KkqSQb4dx428HMujuF23UKaZ7v+R10I+AQrkR3yH7RIMIhYOdNwZN33DA==,
+      }
+    peerDependencies:
+      "@hookform/resolvers": ">= 3.0.0"
+      next: ">= 14.0.0"
+      next-safe-action: ">= 7.6.0"
+      react: ">= 18.2.0"
+      react-dom: ">= 18.2.0"
+      react-hook-form: ">= 7.0.0"
+    dependencies:
+      "@hookform/resolvers": 3.9.1(react-hook-form@7.54.0)
+      next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
+      next-safe-action: 7.9.9(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(zod@3.24.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-hook-form: 7.54.0(react@18.3.1)
     dev: false
 
   /@next/env@14.2.3:
@@ -4014,6 +4067,29 @@ packages:
       "@radix-ui/react-use-layout-effect": 1.1.0(@types/react@18.3.2)(react@18.3.1)
       "@types/react": 18.3.2
       react: 18.3.1
+    dev: false
+
+  /@radix-ui/react-label@2.1.0(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
+    resolution:
+      {
+        integrity: sha512-peLblDlFw/ngk3UWq0VnYaOLy6agTZZ+MUO/WhVfm14vJGML+xH4FAl2XQGLqdefjNb7ApRg6Yn7U42ZhmYXdw==,
+      }
+    peerDependencies:
+      "@types/react": "*"
+      "@types/react-dom": "*"
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
+      "@types/react-dom":
+        optional: true
+    dependencies:
+      "@radix-ui/react-primitive": 2.0.0(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
+      "@types/react": 18.3.2
+      "@types/react-dom": 18.3.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /@radix-ui/react-popover@1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
@@ -4742,7 +4818,7 @@ packages:
       groq-js: 1.9.0
       json5: 2.2.3
       tsconfig-paths: 4.2.0
-      zod: 3.23.8
+      zod: 3.24.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -10981,6 +11057,36 @@ packages:
       }
     dev: true
 
+  /next-safe-action@7.9.9(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(zod@3.24.1):
+    resolution:
+      {
+        integrity: sha512-wFKKCgfHNsObfbDrbOQV8WAE6RnVx7dwmuUazqdNaTL3ZdDzUlRTnIIVI36qSjmgA3zwwxj3nvfxgK9d0fWr5w==,
+      }
+    engines: { node: ">=18.17" }
+    peerDependencies:
+      "@sinclair/typebox": ">= 0.33.3"
+      next: ">= 14.0.0"
+      react: ">= 18.2.0"
+      react-dom: ">= 18.2.0"
+      valibot: ">= 0.36.0"
+      yup: ">= 1.0.0"
+      zod: ">= 3.0.0"
+    peerDependenciesMeta:
+      "@sinclair/typebox":
+        optional: true
+      valibot:
+        optional: true
+      yup:
+        optional: true
+      zod:
+        optional: true
+    dependencies:
+      next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      zod: 3.24.1
+    dev: false
+
   /next-sanity-image@6.1.1(@sanity/client@6.21.3)(next@14.2.3)(react@18.3.1):
     resolution:
       {
@@ -12091,6 +12197,18 @@ packages:
       react-clientside-effect: 1.2.6(react@18.3.1)
       use-callback-ref: 1.3.2(@types/react@18.3.2)(react@18.3.1)
       use-sidecar: 1.1.2(@types/react@18.3.2)(react@18.3.1)
+    dev: false
+
+  /react-hook-form@7.54.0(react@18.3.1):
+    resolution:
+      {
+        integrity: sha512-PS05+UQy/IdSbJNojBypxAo9wllhHgGmyr8/dyGQcPoiMf3e7Dfb9PWYVRco55bLbxH9S+1yDDJeTdlYCSxO3A==,
+      }
+    engines: { node: ">=18.0.0" }
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+    dependencies:
+      react: 18.3.1
     dev: false
 
   /react-i18next@13.5.0(i18next@23.11.4)(react-dom@18.3.1)(react@18.3.1):
@@ -13278,6 +13396,19 @@ packages:
       immer: 10.1.1
       is-plain-object: 5.0.0
       tiny-warning: 1.0.3
+    dev: false
+
+  /sonner@1.7.1(react-dom@18.3.1)(react@18.3.1):
+    resolution:
+      {
+        integrity: sha512-b6LHBfH32SoVasRFECrdY8p8s7hXPDn3OHUFbZZbiB1ctLS9Gdh6rpX2dVrpQA0kiL5jcRzDDldwwLkSKk3+QQ==,
+      }
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /source-map-js@1.2.0:
@@ -14505,20 +14636,6 @@ packages:
       }
     dev: false
 
-  /valibot@0.42.0(typescript@5.4.5):
-    resolution:
-      {
-        integrity: sha512-igMdmHXxDiQY714ssh9bGisMqJ2yg7sko1KOmv/omnrIacGtP6mGrbvVT1IuV1bDrHyG9ybgpHwG1UElDiDCLg==,
-      }
-    peerDependencies:
-      typescript: ">=5"
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      typescript: 5.4.5
-    dev: false
-
   /validate-npm-package-license@3.0.4:
     resolution:
       {
@@ -14984,9 +15101,34 @@ packages:
       readable-stream: 4.5.2
     dev: false
 
-  /zod@3.23.8:
+  /zod@3.24.1:
     resolution:
       {
-        integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==,
+        integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==,
       }
+    dev: false
+
+  /zustand@5.0.2(@types/react@18.3.2)(react@18.3.1):
+    resolution:
+      {
+        integrity: sha512-8qNdnJVJlHlrKXi50LDqqUNmUbuBjoKLrYQBnoChIbVph7vni+sY+YpvdjXG9YLd/Bxr6scMcR+rm5H3aSqPaw==,
+      }
+    engines: { node: ">=12.20.0" }
+    peerDependencies:
+      "@types/react": ">=18.0.0"
+      immer: ">=9.0.6"
+      react: ">=18.0.0"
+      use-sync-external-store: ">=1.2.0"
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+    dependencies:
+      "@types/react": 18.3.2
+      react: 18.3.1
     dev: false

@@ -1,7 +1,16 @@
+import { Toaster } from "@/components/ui/sonner";
 import { fontMontserrat } from "@/config/fonts";
 import { cn } from "@/lib/cn";
 import { generateTheme } from "@/lib/theme-generator";
 import { loadSettings } from "@/sanity/loader/loadQuery";
+import dynamic from "next/dynamic";
+
+const BasicForm = dynamic(
+  () => import("@/components/forms/basic-form").then((mod) => mod.BasicForm),
+  {
+    ssr: false,
+  },
+);
 
 export default async function RootLayout({
   children,
@@ -58,6 +67,8 @@ export default async function RootLayout({
           fontMontserrat.variable,
         )}
       >
+        <Toaster />
+        <BasicForm />
         {children}
       </body>
     </html>

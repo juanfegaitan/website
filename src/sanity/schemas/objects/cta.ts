@@ -69,6 +69,16 @@ export default defineType({
         ],
       },
     }),
+    // define option modal
+    defineField({
+      name: "modal",
+      title: "Modal",
+      type: "string",
+      description: "Open a modal",
+      options: {
+        list: [{ title: "Basic", value: "basic" }],
+      },
+    }),
   ],
   preview: {
     select: {

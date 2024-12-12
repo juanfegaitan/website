@@ -37,6 +37,11 @@ export interface CustomImage {
     asset: ImageAsset;
   };
 }
+
+export enum ModalTypes {
+  BASIC = "basic",
+}
+
 export interface Cta {
   externalLink?: string;
   link?: {
@@ -46,6 +51,7 @@ export interface Cta {
   };
   title?: string;
   variant?: string;
+  modal?: ModalTypes;
 }
 
 export interface Stat {
