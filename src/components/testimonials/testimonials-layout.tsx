@@ -8,7 +8,9 @@ import { Carousel, CarouselContent, CarouselItem } from "../carousel";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), {
   ssr: false,
   loading() {
-    return <div className="aspect-[9/16] w-full animate-pulse bg-neutral-200" />;
+    return (
+      <div className="aspect-[9/16] w-full animate-pulse bg-neutral-200" />
+    );
   },
 });
 
@@ -21,9 +23,7 @@ export function TestimonialsLayout({ data }: Props) {
 
   return (
     <section className="py-12 w-full full-width">
-      <div className="text-4xl text-center">
-        {data?.title}
-      </div>
+      <div className="text-4xl text-center">{data?.title}</div>
 
       <div className="main_container mt-12">
         <Carousel className="w-full">
@@ -57,20 +57,13 @@ export function TestimonialsLayout({ data }: Props) {
                       </div>
                     )}
 
-
-
                     <div className="flex  gap-6">
                       <div className="flex flex-col items-start justify-center text-left">
-                        <div className="font-semibold">
-                          {testimonial.name}
-                        </div>
-
+                        <div className="font-semibold">{testimonial.name}</div>
 
                         <div className="text-base">{testimonial.subtitle}</div>
                       </div>
                     </div>
-
-
                   </div>
                 </CarouselItem>
               );

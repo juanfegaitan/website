@@ -12,12 +12,18 @@ type BgHeroProps = {
   slug?: string;
 } & React.HTMLAttributes<HTMLElement>;
 
-export async function BgHero({ load = Singletons.HOME, slug, ...props }: BgHeroProps) {
+export async function BgHero({
+  load = Singletons.HOME,
+  slug,
+  ...props
+}: BgHeroProps) {
   const data = await loadSingleton(load, slug);
 
   if (draftMode().isEnabled) {
     return <BgHeroPreview initial={data} load={load} />;
   }
 
-  return <BgHeroLayout hero={data?.data?.["bgHero"] as BgHeroType} {...props} />;
+  return (
+    <BgHeroLayout hero={data?.data?.["bgHero"] as BgHeroType} {...props} />
+  );
 }

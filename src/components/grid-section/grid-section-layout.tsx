@@ -14,9 +14,7 @@ export function GridSectionLayout({ data }: Props) {
 
   return (
     <section className={cn("py-8 md:py-12")}>
-      <h2 className="text-2xl  font-bold">
-        {data?.title}
-      </h2>
+      <h2 className="text-2xl  font-bold">{data?.title}</h2>
 
       <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 lg:mt-24">
         {data.grids?.map((item) => {

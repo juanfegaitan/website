@@ -17,9 +17,7 @@ export function StatsLAyout({ data }: Props) {
       className="bg-gray-50 py-12 w-full full-width"
       style={{ backgroundColor: data.bgColor?.hex }}
     >
-      <h2 className={cn("text-4xl text-center ")}>
-        {data?.title}
-      </h2>
+      <h2 className={cn("text-4xl text-center ")}>{data?.title}</h2>
 
       <div className="main_container">
         {!!data.stats?.length && (

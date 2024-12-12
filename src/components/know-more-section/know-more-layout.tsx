@@ -14,9 +14,7 @@ export function KnowMoreSectionLayout({ data }: Props) {
 
   return (
     <section className="bg-gray-200 py-12 mt-24 w-full full-width">
-      <div className="text-4xl text-center">
-        {data.title}{" "}
-      </div>
+      <div className="text-4xl text-center">{data.title} </div>
       {!!data.description && (
         <div className="text-center text-body mt-8">
           <CustomPortableText value={data.description as any} />

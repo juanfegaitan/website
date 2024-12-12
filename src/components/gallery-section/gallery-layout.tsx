@@ -15,11 +15,13 @@ export function GallerySectionLayout({ data }: Props) {
 
   return (
     <section className="flex flex-col justify-between gap-8 py-12">
-      <div className={cn("text-xl font-bold w-fit text-white bg-black px-6 py-2", {
-        'self-start': data.titlePosition === 'left',
-        'self-center': data.titlePosition === 'center',
-        'self-end': data.titlePosition === 'right',
-      })}>
+      <div
+        className={cn("text-xl font-bold w-fit text-white bg-black px-6 py-2", {
+          "self-start": data.titlePosition === "left",
+          "self-center": data.titlePosition === "center",
+          "self-end": data.titlePosition === "right",
+        })}
+      >
         {data.title}
       </div>
 
@@ -30,32 +32,30 @@ export function GallerySectionLayout({ data }: Props) {
       )}
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {
-          data.images?.map((item, index) => {
-            const imageURL =
-              item.image?.asset && urlForImage(item.image)?.url();
+        {data.images?.map((item, index) => {
+          const imageURL = item.image?.asset && urlForImage(item.image)?.url();
 
-            if (!imageURL) return null;
+          if (!imageURL) return null;
 
-
-            return (
-              <div key={index} className="relative w-full aspect-square rounded-2xl overflow-hidden">
-                <Image
-                  src={imageURL}
-                  alt={item.alt ?? ""}
-                  fill
-                  className="object-cover"
-                  placeholder={
-                    item.image?.asset?.metadata?.lqip ? "blur" : "empty"
-                  }
-                  blurDataURL={item.image?.asset?.metadata?.lqip}
-                />
-              </div>
-            )
-          })
-        }
+          return (
+            <div
+              key={index}
+              className="relative w-full aspect-square rounded-2xl overflow-hidden"
+            >
+              <Image
+                src={imageURL}
+                alt={item.alt ?? ""}
+                fill
+                className="object-cover"
+                placeholder={
+                  item.image?.asset?.metadata?.lqip ? "blur" : "empty"
+                }
+                blurDataURL={item.image?.asset?.metadata?.lqip}
+              />
+            </div>
+          );
+        })}
       </div>
-
     </section>
   );
 }

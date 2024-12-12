@@ -25,9 +25,7 @@ export function YoutubeSectionLayout({ data }: Props) {
   return (
     <section className="py-16 w-full max-w-4xl mx-auto">
       {!!data.title && (
-        <h2 className="text-4xl text-center mb-12">
-          {data.title}
-        </h2>
+        <h2 className="text-4xl text-center mb-12">{data.title}</h2>
       )}
       {!!data.description && (
         <p className="text-center mb-12">

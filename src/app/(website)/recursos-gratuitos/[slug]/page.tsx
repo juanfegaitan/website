@@ -17,7 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return _generateMetadata({
     description: page?.seo?.description ?? page?.description,
     image: page?.seo?.image ?? page?.image?.image,
-    title: page?.seo?.title ?? page?.title ? toPlainText(page?.title) : "Recursos gratuitos",
+    title:
+      page?.seo?.title ?? page?.title
+        ? toPlainText(page?.title)
+        : "Recursos gratuitos",
   });
 }
 

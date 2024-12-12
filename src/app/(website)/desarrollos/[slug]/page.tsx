@@ -28,16 +28,17 @@ export function generateStaticParams() {
   return generateStaticSlugs("property");
 }
 
-
 function shortNumber(num?: number, currency?: string) {
   if (!num) {
     return "";
   }
 
   if (num > 999 && num < 1000000) {
-    return formatPrice(num / 1_000, currency) + "K" + " " + (currency ?? 'MXN'); // convert to K for number from > 1000 < 1 million
+    return formatPrice(num / 1_000, currency) + "K" + " " + (currency ?? "MXN"); // convert to K for number from > 1000 < 1 million
   } else if (num > 1000000) {
-    return formatPrice(num / 1_000_000, currency) + "M" + " " + (currency ?? 'MXN');; // convert to M for number from > 1 million
+    return (
+      formatPrice(num / 1_000_000, currency) + "M" + " " + (currency ?? "MXN")
+    ); // convert to M for number from > 1 million
   } else if (num < 900) {
     return num; // if value < 1000, nothing to do
   }
@@ -52,7 +53,7 @@ function formatPrice(price: number | undefined | null, currency?: string) {
     style: "currency",
     currency: currency ?? "MXN",
     minimumFractionDigits: 0,
-  })
+  });
 }
 
 const formatDate = (date?: string) => {
@@ -62,13 +63,11 @@ const formatDate = (date?: string) => {
 
   const parsedDate = dayjs(date);
 
-
   return new Intl.DateTimeFormat("es-MX", {
     month: "long",
     year: "numeric",
   }).format(parsedDate.toDate());
-}
-
+};
 
 export default async function ListingDetailPage(props: Props) {
   const { data } = await loadProperty(props.params.slug);
@@ -145,7 +144,9 @@ export default async function ListingDetailPage(props: Props) {
 
             <div>
               <div className="">Plusvalía de la zona</div>
-              <div className="text-2xl font-bold">{data?.appreciation ?? 0}</div>
+              <div className="text-2xl font-bold">
+                {data?.appreciation ?? 0}
+              </div>
             </div>
           </div>
 

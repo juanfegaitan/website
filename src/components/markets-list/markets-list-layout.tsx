@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs/tabs";
 
 type Props = {
   data?: MarketDocument[] | null;
-  investPage: InvestPagePayload
+  investPage: InvestPagePayload;
 };
 
 export function MarketsListLayout({ data, investPage }: Props) {
@@ -68,7 +68,10 @@ export function MarketsListLayout({ data, investPage }: Props) {
 
               <GridSectionLayout data={market.grid} />
 
-              <PropertiesSectionLayout data={market.properties} investPage={investPage} />
+              <PropertiesSectionLayout
+                data={market.properties}
+                investPage={investPage}
+              />
             </TabsContent>
           );
         })}

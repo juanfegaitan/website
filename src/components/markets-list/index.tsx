@@ -15,5 +15,7 @@ export async function MarketsList() {
     return <MarketsListPreview initial={data} />;
   }
 
-  return <MarketsListLayout investPage={investPage.data} data={data.data?.markets} />;
+  return (
+    <MarketsListLayout investPage={investPage.data} data={data.data?.markets} />
+  );
 }

@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     if (body._type !== "testimonial" || !body.video?.asset?._ref) {
       return NextResponse.json(
         { message: "Not a valid video update" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
     console.error("Error processing video:", error);
     return NextResponse.json(
       { message: "Error processing video", error: String(error) },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -29,13 +29,21 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
   }
 
   return (
-    <header className={cn("relative full-width aspect-square md:aspect-video lg:aspect-[16/5] overflow-hidden", className)} {...props}>
-      {
-        hero.cta && <div className="flex items-center justify-end h-full relative z-20 main_container">
+    <header
+      className={cn(
+        "relative full-width aspect-square md:aspect-video lg:aspect-[16/5] overflow-hidden",
+        className,
+      )}
+      {...props}
+    >
+      {hero.cta && (
+        <div className="flex items-center justify-end h-full relative z-20 main_container">
           <div className="w-full md:w-1/2 h-full flex flex-col items-start justify-center">
-            {hero?.title && <h1 className="text-white text-5xl font-normal text-center">
-              {hero?.title}
-            </h1>}
+            {hero?.title && (
+              <h1 className="text-white text-5xl font-normal text-center">
+                {hero?.title}
+              </h1>
+            )}
 
             {hero?.subtitle && (
               <div className="text-white text-lg lg:text-3xl">
@@ -46,23 +54,23 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
             <Cta className="mt-10" {...hero.cta} />
           </div>
         </div>
-      }
+      )}
 
-
-      {
-        !hero.cta && <div className="h-full w-full mx-auto max-w-2xl text-center z-20 relative gid place-content-center">
-          {hero?.title && <h1 className="text-white text-5xl font-normal text-center">
-            {hero?.title}
-          </h1>}
+      {!hero.cta && (
+        <div className="h-full w-full mx-auto max-w-2xl text-center z-20 relative gid place-content-center">
+          {hero?.title && (
+            <h1 className="text-white text-5xl font-normal text-center">
+              {hero?.title}
+            </h1>
+          )}
 
           {hero?.subtitle && (
             <div className="text-white text-lg lg:text-2xl mt-6">
               <CustomPortableText value={hero.subtitle as any} />
             </div>
           )}
-
         </div>
-      }
+      )}
 
       {!!hero?.bgVideo && (
         <div className="absolute inset-0">

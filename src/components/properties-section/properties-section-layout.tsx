@@ -14,9 +14,7 @@ export function PropertiesSectionLayout({ data, investPage }: Props) {
 
   return (
     <section className={cn("py-8 md:py-12")}>
-      <h2 className="text-4xl text-center">
-        {data?.title}
-      </h2>
+      <h2 className="text-4xl text-center">{data?.title}</h2>
 
       {data?.description && (
         <div className="mt-4 text-center">

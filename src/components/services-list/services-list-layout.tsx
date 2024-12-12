@@ -20,8 +20,7 @@ export function ServicesListLayout({ services, servicesPage }: Props) {
       {services.map((service) => {
         const image = service?.image?.image;
 
-        const imageUrl =
-          image && urlForImage(image)?.url();
+        const imageUrl = image && urlForImage(image)?.url();
 
         const href = resolveHref(service._type, service.slug)?.replace(
           "/servicios",

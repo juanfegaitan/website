@@ -26,24 +26,23 @@ function calcMonths(date: string) {
   );
 }
 
-
 function shortNumber(num?: number, currency?: string) {
   if (!num) {
     return "";
   }
 
-  let value = ''
+  let value = "";
 
   if (num > 999 && num < 1000000) {
-    value = formatPrice(num / 1_000, currency) + "K" + " " // convert to K for number from > 1000 < 1 million
+    value = formatPrice(num / 1_000, currency) + "K" + " "; // convert to K for number from > 1000 < 1 million
   } else if (num > 1000000) {
-    value = formatPrice(num / 1_000_000, currency) + "M" + " " // convert to M for number from > 1 million
+    value = formatPrice(num / 1_000_000, currency) + "M" + " "; // convert to M for number from > 1 million
   } else if (num < 900) {
     value = num.toString(); // if value < 1000, nothing to do
   }
 
   // if the value has the cyurrency symbol, remove it
-  return value.replace(currency ?? "MXN", "") + " " + (currency ?? "MXN")
+  return value.replace(currency ?? "MXN", "") + " " + (currency ?? "MXN");
 }
 
 function formatPrice(price: number | undefined | null, currency?: string) {
@@ -51,12 +50,11 @@ function formatPrice(price: number | undefined | null, currency?: string) {
     return "";
   }
 
-
   return price.toLocaleString("es-MX", {
     style: "currency",
     currency: currency ?? "MXN",
     minimumFractionDigits: 0,
-  })
+  });
 }
 
 const formatDate = (date?: string) => {
@@ -66,12 +64,11 @@ const formatDate = (date?: string) => {
 
   const parsedDate = dayjs(date);
 
-
   return new Intl.DateTimeFormat("es-MX", {
     month: "long",
     year: "numeric",
   }).format(parsedDate.toDate());
-}
+};
 
 export function Property({ property, investPage }: Props) {
   const link = resolveHref("property", property.slug)?.replace(
@@ -125,14 +122,18 @@ export function Property({ property, investPage }: Props) {
 
         <div className="flex items-center justify-between gap-2 w-full">
           <div>Entrega:</div>
-          <strong className="first-letter:capitalize">{formatDate(property.deliveryDate)}</strong>
+          <strong className="first-letter:capitalize">
+            {formatDate(property.deliveryDate)}
+          </strong>
         </div>
 
         <div className="w-full h-px bg-primary my-4" />
 
         <div className="flex items-center justify-between gap-1 w-full">
           <div className="flex-shrink-0">Precio desde:</div>
-          <strong className="truncate">{shortNumber(property.price, property.currency)}</strong>
+          <strong className="truncate">
+            {shortNumber(property.price, property.currency)}
+          </strong>
         </div>
       </div>
     </Link>

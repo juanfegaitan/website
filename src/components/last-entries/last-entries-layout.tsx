@@ -21,9 +21,7 @@ export function LastEntriesSectionLayout({
 
   return (
     <section className="bg-white py-12 w-full full-width">
-      <div className="text-4xl text-center">
-        {data.title}{" "}
-      </div>
+      <div className="text-4xl text-center">{data.title} </div>
       {!!data.description && (
         <div className="text-center text-body mt-8">
           <CustomPortableText value={data.description as any} />
