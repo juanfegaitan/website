@@ -174,6 +174,7 @@ const SECTIONS_QUERY = `
       ...,
       description,
       cta{
+        modal,
         externalLink,
         link->{
           _type,
@@ -230,6 +231,7 @@ const SECTIONS_QUERY = `
       },
       position,
       cta{
+        modal,
         externalLink,
         link->{
           _type,
@@ -256,6 +258,7 @@ const DEFAULT_QUERY = `
   bgHero{
     ...,
     cta{
+      modal,
       externalLink,
       link->{
         _type,
@@ -297,6 +300,7 @@ const DEFAULT_QUERY = `
         }
       },
       cta{
+        modal,
         externalLink,
         link->{
           _type,
@@ -385,6 +389,7 @@ export const marketsQuery = groq`
         },
       },
       cta{
+        modal,
         externalLink,
         link->{
           _type,
@@ -454,6 +459,7 @@ export const queryServiceBySlug = groq`
     description,
     shortDescription,
     cta{
+      modal,
       externalLink,
       link->{
         _type,
@@ -534,6 +540,7 @@ export const settingsQuery = groq`
       },
     },
     contactCta{
+      modal,
       externalLink,
       link->{
         _type,
@@ -554,6 +561,7 @@ export const queryAllServices = groq`
     description,
     shortDescription,
     cta{
+      modal,
       externalLink,
       link->{
         _type,
