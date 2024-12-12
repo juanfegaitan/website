@@ -10,4 +10,11 @@ export const BasicFormSchema = z.object({
     .string()
     .min(2, "El nombre debe tener al menos 2 caracteres")
     .max(255, "El nombre debe tener menos de 255 caracteres"),
+  phone: z
+    .string()
+    .min(2, "El teléfono debe tener al menos 2 caracteres")
+    .max(255, "El teléfono debe tener menos de 255 caracteres"),
 });
+
+// TODO mejorar la validacion user react-number-format
+// TODO: mejorar la carga de video

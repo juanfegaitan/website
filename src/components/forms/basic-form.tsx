@@ -111,6 +111,21 @@ export function BasicForm() {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Teléfono</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Escribe tu teléfono" {...field} />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button
               type="submit"
               disabled={isLoading}

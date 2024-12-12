@@ -17,7 +17,7 @@ const GOOGLE_SHEET_KEY = process.env
 const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 const GOOGLE_EMAIL = process.env.GOOGLE_EMAIL!;
 
-const HEADERS_ROW = ["Nombre", "Correo", "Fecha", "URL"];
+const HEADERS_ROW = ["Nombre", "Correo", "Telefono", "Fecha", "URL"];
 
 function getServiceAccount() {
   const serviceAccountAuth = new JWT({
@@ -78,8 +78,9 @@ function mapData(data: z.infer<typeof BasicFormSchema>) {
   return {
     [HEADERS_ROW[0]]: data.name,
     [HEADERS_ROW[1]]: data.email,
-    [HEADERS_ROW[2]]: new Date().toLocaleDateString(),
-    [HEADERS_ROW[3]]: url ?? "",
+    [HEADERS_ROW[2]]: data.phone,
+    [HEADERS_ROW[3]]: new Date().toLocaleDateString(),
+    [HEADERS_ROW[4]]: url ?? "",
   };
 }
 
@@ -90,23 +91,15 @@ export const registerBasicForm = actionClient
   .schema(BasicFormSchema)
   .action(async ({ parsedInput }) => {
     try {
-      const name = parsedInput.name;
-
-      const email = parsedInput.email;
-
-      const row = {
-        name,
-        email,
-      };
       const sheet = await getOrCreateSheet("Basic Form");
 
       log.ingest({
         event: "sheet get or create",
-        data: row,
+        data: parsedInput,
         status_log: STATUS_LOG.success,
       });
 
-      const foundRow = await findRow(sheet, email);
+      const foundRow = await findRow(sheet, parsedInput.email);
 
       if (foundRow) {
         log.ingest({
@@ -116,7 +109,7 @@ export const registerBasicForm = actionClient
         });
 
         // Ovewrite row
-        foundRow.assign(mapData(row));
+        foundRow.assign(mapData(parsedInput));
 
         await foundRow.save();
 
@@ -131,11 +124,11 @@ export const registerBasicForm = actionClient
         };
       }
 
-      await sheet.addRow(mapData(row));
+      await sheet.addRow(mapData(parsedInput));
 
       log.ingest({
         event: "row added to sheet",
-        data: row,
+        data: parsedInput,
         status_log: STATUS_LOG.success,
       });
 
