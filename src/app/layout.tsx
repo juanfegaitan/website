@@ -5,6 +5,7 @@ import { cn } from "@/lib/cn";
 import { generateTheme } from "@/lib/theme-generator";
 import { loadSettings } from "@/sanity/loader/loadQuery";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 const BasicForm = dynamic(
   () => import("@/components/forms/basic-form").then((mod) => mod.BasicForm),
@@ -68,7 +69,9 @@ export default async function RootLayout({
           fontMontserrat.variable,
         )}
       >
-        <ModalProvider />
+        <Suspense>
+          <ModalProvider />
+        </Suspense>
         <Toaster />
         <BasicForm />
         {children}
