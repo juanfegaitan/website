@@ -5,7 +5,6 @@ import { Stats } from "@/components/stats-section";
 import { Testimonials } from "@/components/testimonials";
 import { loadSingleton } from "@/sanity/loader/loadQuery";
 import { SectionsList, Singletons } from "@/types";
-import omit from 'just-omit';
 import { AccordionSection } from "./accordion-section";
 import { AlliedsSection } from "./allieds-section";
 import { GallerySection } from "./gallery-section";
@@ -57,11 +56,12 @@ export async function Sections({ load = Singletons.HOME, slug }: SectionProps) {
     };
 
     const SectionComponent = sectionComponents[section._type];
+
     if (!SectionComponent) return null;
 
     if (index <= 1) {
       return (
-        <SectionComponent key={section._key} {...omit(section, 'key')} />
+        <SectionComponent {...sectionProps} />
       );
     }
 
