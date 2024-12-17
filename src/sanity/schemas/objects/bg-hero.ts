@@ -73,6 +73,12 @@ export default defineType({
       title: "Background",
       type: "image",
     }),
+    // Bg Image mobile
+    defineField({
+      name: "bgMobile",
+      title: "Background Mobile",
+      type: "image",
+    }),
     defineField({
       name: "cta",
       title: "Call to Action",

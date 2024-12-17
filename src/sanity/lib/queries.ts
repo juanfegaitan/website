@@ -270,6 +270,13 @@ const DEFAULT_QUERY = `
     },
     title,
     "bgVideo": bgVideo.asset->url,
+    bgMobile{
+      ...,
+      asset->{
+        ...,
+        "_ref": _id,
+      },
+    },
     subtitle,
     bg{
       ...,

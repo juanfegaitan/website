@@ -330,6 +330,7 @@ export interface BgHero {
   subtitle?: PortableTextBlock[];
   bg?: CustomImage["image"];
   cta?: Cta;
+  bgMobile?: CustomImage["image"];
 }
 
 export interface Service {

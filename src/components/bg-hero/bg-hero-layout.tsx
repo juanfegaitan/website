@@ -24,6 +24,8 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
 
   const imageUrl = image && urlForImage(image)?.url();
 
+  const bgImageMobile = hero?.bgMobile && urlForImage(hero.bgMobile)?.url();
+
   if (!hero) {
     return null;
   }
@@ -108,10 +110,26 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
           src={imageUrl}
           alt="hero"
           fill
-          className="object-cover"
+          className={cn("object-cover", {
+            'hidden md:block': !!bgImageMobile,
+          })}
           priority
           quality={100}
           blurDataURL={image.asset.metadata.lqip}
+        />
+      )}
+
+      {bgImageMobile && (
+        <Image
+          src={bgImageMobile}
+          alt="hero"
+          fill
+          className={cn("object-cover", {
+            'block md:hidden': !!imageUrl,
+          })}
+          priority
+          quality={100}
+          blurDataURL={hero.bgMobile?.asset.metadata.lqip}
         />
       )}
     </header>
