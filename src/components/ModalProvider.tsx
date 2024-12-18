@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useModalURLSync } from "@/store/modal";
 

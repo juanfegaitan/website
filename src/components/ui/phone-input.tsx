@@ -9,17 +9,21 @@ import React, { forwardRef } from "react";
 import * as RPNInput from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 
-export const PhoneInput = forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, ...props }, ref) => {
-    return (
-      <Input
-        className={cn("-ms-px rounded-s-none shadow-none focus-visible:z-10", className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
+export const PhoneInput = forwardRef<
+  HTMLInputElement,
+  React.ComponentProps<"input">
+>(({ className, ...props }, ref) => {
+  return (
+    <Input
+      className={cn(
+        "-ms-px rounded-s-none shadow-none focus-visible:z-10",
+        className,
+      )}
+      ref={ref}
+      {...props}
+    />
+  );
+});
 
 PhoneInput.displayName = "PhoneInput";
 
@@ -30,7 +34,12 @@ type CountrySelectProps = {
   options: { label: string; value: RPNInput.Country | undefined }[];
 };
 
-export const CountrySelect = ({ disabled, value, onChange, options }: CountrySelectProps) => {
+export const CountrySelect = ({
+  disabled,
+  value,
+  onChange,
+  options,
+}: CountrySelectProps) => {
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(event.target.value as RPNInput.Country);
   };
@@ -57,7 +66,9 @@ export const CountrySelect = ({ disabled, value, onChange, options }: CountrySel
           .filter((x) => x.value)
           .map((option, i) => (
             <option key={option.value ?? `empty-${i}`} value={option.value}>
-              {option.label} {option.value && `+${RPNInput.getCountryCallingCode(option.value)}`}
+              {option.label}{" "}
+              {option.value &&
+                `+${RPNInput.getCountryCallingCode(option.value)}`}
             </option>
           ))}
       </select>
@@ -70,7 +81,11 @@ export const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
 
   return (
     <span className="w-5 overflow-hidden">
-      {Flag ? <Flag title={countryName} /> : <Phone size={16} aria-hidden="true" />}
+      {Flag ? (
+        <Flag title={countryName} />
+      ) : (
+        <Phone size={16} aria-hidden="true" />
+      )}
     </span>
   );
 };

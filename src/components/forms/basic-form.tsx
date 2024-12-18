@@ -31,14 +31,14 @@ import { CountrySelect, FlagComponent, PhoneInput } from "../ui/phone-input";
 
 function getBrowserCountryCode() {
   // Get browser language
-  const language = navigator.language || navigator.userLanguage
+  const language = navigator.language || navigator.userLanguage;
 
   // Extract the country code (last 2 characters if language-COUNTRY format)
-  const countryCode = language.includes('-') ?
-    language.split('-')[1].toUpperCase() :
-    language.slice(-2).toUpperCase();
+  const countryCode = language.includes("-")
+    ? language.split("-")[1].toUpperCase()
+    : language.slice(-2).toUpperCase();
 
-  return countryCode || 'MX';
+  return countryCode || "MX";
 }
 
 export function BasicForm() {
@@ -64,8 +64,6 @@ export function BasicForm() {
       toast.error("Hubo un error, por favor intenta de nuevo.");
     },
   });
-
-
 
   function onSubmit(values: z.infer<typeof BasicFormSchema>) {
     execute(values);

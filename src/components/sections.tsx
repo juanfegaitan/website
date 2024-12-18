@@ -1,4 +1,3 @@
-
 import { CallToActionSection } from "@/components/call-to-action-section";
 import { Feature } from "@/components/feature-section";
 import { Stats } from "@/components/stats-section";
@@ -18,7 +17,6 @@ import { PortableTextSectionComponent } from "./portable-text-section";
 import { PropertiesSection } from "./properties-section";
 import { ServicesSection } from "./services-section";
 import { YoutubeSection } from "./youtube-section";
-
 
 type SectionProps = {
   load?: Singletons;
@@ -60,9 +58,7 @@ export async function Sections({ load = Singletons.HOME, slug }: SectionProps) {
     if (!SectionComponent) return null;
 
     if (index <= 1) {
-      return (
-        <SectionComponent {...sectionProps} />
-      );
+      return <SectionComponent {...sectionProps} />;
     }
 
     return (
@@ -72,9 +68,5 @@ export async function Sections({ load = Singletons.HOME, slug }: SectionProps) {
     );
   };
 
-  return (
-    <>
-      {data?.data?.sections?.map(renderSection)}
-    </>
-  );
+  return <>{data?.data?.sections?.map(renderSection)}</>;
 }

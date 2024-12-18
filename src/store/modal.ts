@@ -83,7 +83,7 @@ export function useModalURLSync() {
         history,
         null, // Required for Next.js 14.1.0+ reactive updates
         "",
-        url
+        url,
       );
 
       if (scroll) {
@@ -97,7 +97,7 @@ export function useModalURLSync() {
         });
       }
     },
-    [router, setOptimisticSearchParams]
+    [router, setOptimisticSearchParams],
   );
 
   // Sync from URL to state
@@ -122,7 +122,7 @@ export function useModalURLSync() {
       lastModalRef.current = newModal;
 
       const newSearchParams = new URLSearchParams(
-        optimisticSearchParams.toString()
+        optimisticSearchParams.toString(),
       );
 
       if (newModal) {

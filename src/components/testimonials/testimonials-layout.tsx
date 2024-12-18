@@ -34,10 +34,7 @@ export function TestimonialsLayout({ data }: Props) {
               urlForImage(image)?.height(560).width(420).fit("crop").url();
 
             return (
-              <div
-                key={index}
-                className="flex-1"
-              >
+              <div key={index} className="flex-1">
                 <div className="flex flex-col gap-4 items-start text-left">
                   {testimonial.videoUrl && (
                     <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden">
