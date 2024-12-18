@@ -33,14 +33,17 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
   return (
     <header
       className={cn(
-        "relative full-width aspect-[3/4] md:aspect-video lg:aspect-[16/5] overflow-hidden",
+        "relative full-width aspect-square md:aspect-video lg:aspect-[16/5] overflow-hidden",
+        {
+          'aspect-[3/4]': !!hero.bgMobile,
+        },
         className,
       )}
       {...props}
     >
       {hero.cta && (
         <div className="flex items-center justify-end h-full relative z-20 main_container">
-          <div className="w-full md:w-1/2 h-full flex flex-col items-start justify-start md:justify-center mt-8 md:mt-0">
+          <div className={cn("w-full md:w-1/2 h-full flex flex-col items-start justify-center", { " md:justify-center mt-8 md:mt-0": !!hero.bgMobile })}>
             {hero?.title && (
               <h1 className="text-white text-5xl font-normal text-center">
                 {hero?.title}
