@@ -3,7 +3,8 @@
 import { TestimonialPayload, TestimonialSection } from "@/types";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import ReactPlayer from "react-player";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), {
   ssr: false,
@@ -21,18 +22,97 @@ type Props = {
 
 function Testimonial({ testimonial }: { testimonial: TestimonialPayload }) {
   const [showVideo, setShowVideo] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [isTabVisible, setIsTabVisible] = useState(true);
+
+  const videoRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<ReactPlayer>(null);
+
+
+  // Handle tab visibility changes
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsTabVisible(!document.hidden);
+
+      // Pause video when tab is hidden
+      if (document.hidden && playerRef.current) {
+        setShowVideo(false);
+        playerRef.current.seekTo(0);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Set initial visibility state
+    setIsTabVisible(!document.hidden);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+
+        // Pause video when out of view
+        if (!entry.isIntersecting && playerRef.current) {
+          playerRef.current.seekTo(0);
+          setShowVideo(false);
+        }
+      },
+      {
+        threshold: 0.5,  // Trigger when 50% of element is visible
+        rootMargin: '-50px' // Add some margin to trigger earlier
+      }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Handle window blur/focus events
+  useEffect(() => {
+    const handleFocusChange = () => {
+      if (!document.hasFocus() && playerRef.current) {
+        setShowVideo(false);
+        playerRef.current.seekTo(0);
+      }
+    };
+
+    window.addEventListener('blur', handleFocusChange);
+
+    return () => {
+      window.removeEventListener('blur', handleFocusChange);
+    };
+  }, []);
+
+  const isVideoPlayable = useMemo(() => {
+    if (testimonial.previewGift) {
+      return showVideo && isTabVisible && isInView;
+    }
+
+    return isInView && isTabVisible;
+  }, [isInView, isTabVisible, showVideo, testimonial.previewGift]);
+
 
   return (
     <div className="flex-1">
       <div className="flex flex-col gap-4 items-start text-left">
         {testimonial.videoUrl && (
-          <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden">
+          <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden" ref={videoRef}
+          >
             {testimonial.previewGift && (
               <Image
                 src={testimonial.previewGift}
                 alt={testimonial.name + " preview"}
                 fill
-                className="object-cover"
+                className="object-cover cursor-pointer"
                 onClick={() => setShowVideo(true)}
                 loading="lazy" // Add lazy loading
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // Add responsive sizes
@@ -47,7 +127,9 @@ function Testimonial({ testimonial }: { testimonial: TestimonialPayload }) {
                 height="100%"
                 className="absolute inset-0"
                 controls
-                playing={showVideo}
+                playing={isVideoPlayable}
+                onEnded={() => setShowVideo(false)}
+                onError={() => setShowVideo(false)}
                 fallback={
                   <div className="aspect-[9/16] w-full animate-pulse bg-neutral-200" />
                 }
