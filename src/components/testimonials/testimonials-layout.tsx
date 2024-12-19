@@ -4,7 +4,7 @@ import { TestimonialPayload, TestimonialSection } from "@/types";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
-import ReactPlayer from "react-player";
+import ReactPlayerNative from "react-player";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), {
   ssr: false,
@@ -26,7 +26,7 @@ function Testimonial({ testimonial }: { testimonial: TestimonialPayload }) {
   const [isTabVisible, setIsTabVisible] = useState(true);
 
   const videoRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<ReactPlayer>(null);
+  const playerRef = useRef<ReactPlayerNative>(null);
 
 
   // Handle tab visibility changes
