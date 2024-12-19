@@ -397,6 +397,8 @@ export interface TestimonialPayload {
   review?: string;
   subtitle?: string;
   videoUrl?: string;
+  previewGift?: string;
+  previewGif?: CustomImage["image"];
 }
 
 type GalleryImage = CustomImage["image"] & {

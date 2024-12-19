@@ -136,6 +136,7 @@ const SECTIONS_QUERY = `
       testimonials[]->{
         ...,
         "videoUrl": video.asset->url,
+        "previewGift": previewGif.asset->url,
         image{
           ...,
           image{

@@ -45,6 +45,9 @@ export default defineType({
       name: "previewGif",
       title: "Preview GIF",
       type: "file",
+      options: {
+        accept: "image/gif",
+      },
     }),
   ],
   preview: {
