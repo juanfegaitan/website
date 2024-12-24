@@ -8,12 +8,18 @@ import {
   GoogleSpreadsheetWorksheet,
 } from "google-spreadsheet";
 import { headers } from "next/headers";
-import * as v from "valibot"; // 1.2 kB
+import * as z from "zod"; // 1.2 kB
 
-const DownloadResourceForm = v.object({
-  email: v.pipe(v.string(), v.email(), v.minLength(1), v.maxLength(250)),
-  name: v.pipe(v.string(), v.minLength(1), v.maxLength(100)),
-  resourceSlug: v.string(),
+// const DownloadResourceForm = v.object({
+//   email: v.pipe(v.string(), v.email(), v.minLength(1), v.maxLength(250)),
+//   name: v.pipe(v.string(), v.minLength(1), v.maxLength(100)),
+//   resourceSlug: v.string(),
+// });
+
+const DownloadResourceForm = z.object({
+  email: z.string().email().min(1).max(250),
+  name: z.string().min(1).max(100),
+  resourceSlug: z.string(),
 });
 
 const log = {
@@ -72,7 +78,7 @@ async function getOrCreateSheet(sheetName: string) {
   return sheet;
 }
 
-function mapContact(data: v.InferOutput<typeof DownloadResourceForm>) {
+function mapContact(data: z.infer<typeof DownloadResourceForm>) {
   return {
     [HEADERS_ROW[0]]: data.name,
     [HEADERS_ROW[1]]: data.email,
@@ -141,18 +147,18 @@ export async function downloadResource(
       resourceSlug,
     };
 
-    const payload = v.safeParse(DownloadResourceForm, contact);
+    const payload = DownloadResourceForm.safeParse(contact);
 
     if (!payload.success) {
       log.ingest({
         event: "validation error",
-        data: payload.issues,
+        data: payload.error,
         status_log: STATUS_LOG.error,
       });
 
       return {
         success: false,
-        error: payload.issues,
+        error: payload.error,
       };
     }
 
@@ -192,7 +198,7 @@ export async function downloadResource(
       status_log: STATUS_LOG.success,
     });
 
-    const foundContact = await findContact(sheet, payload.output.email);
+    const foundContact = await findContact(sheet, payload.data.email);
 
     if (foundContact) {
       log.ingest({
