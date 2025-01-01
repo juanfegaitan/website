@@ -45,9 +45,9 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
         <div className="flex items-center justify-end h-full relative z-20 main_container">
           <div
             className={cn(
-              "w-full md:w-1/2 h-full flex flex-col items-start justify-center",
+              "w-full h-full flex flex-col items-center justify-center",
               {
-                "justify-start md:justify-center mt-8 md:mt-0": !!hero.bgMobile,
+                "justify-start items-start md:justify-center mt-8 md:mt-0 md:w-1/2": !!hero.bgMobile,
               },
             )}
           >
