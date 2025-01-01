@@ -1,26 +1,14 @@
 "use server";
 
-import { ratelimit } from "@/lib/rate-limit";
+import { actionClient } from "@/lib/safe-action";
 import { loadResource } from "@/sanity/loader/loadQuery";
+import { DownloadResourceFormSchema } from "@/schema/download-resource";
 import { JWT } from "google-auth-library";
 import {
   GoogleSpreadsheet,
   GoogleSpreadsheetWorksheet,
 } from "google-spreadsheet";
-import { headers } from "next/headers";
 import * as z from "zod"; // 1.2 kB
-
-// const DownloadResourceForm = v.object({
-//   email: v.pipe(v.string(), v.email(), v.minLength(1), v.maxLength(250)),
-//   name: v.pipe(v.string(), v.minLength(1), v.maxLength(100)),
-//   resourceSlug: v.string(),
-// });
-
-const DownloadResourceForm = z.object({
-  email: z.string().email().min(1).max(250),
-  name: z.string().min(1).max(100),
-  resourceSlug: z.string(),
-});
 
 const log = {
   ingest: async (data: any) => {
@@ -40,7 +28,7 @@ const GOOGLE_SHEET_KEY = process.env
 const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID!;
 const GOOGLE_EMAIL = process.env.GOOGLE_EMAIL!;
 
-const HEADERS_ROW = ["Nombre", "Correo", "Fecha", "Resource"];
+const HEADERS_ROW = ["Nombre", "Correo", "Fecha", "Telefono", "Resource"];
 
 function getServiceAccount() {
   const serviceAccountAuth = new JWT({
@@ -78,10 +66,11 @@ async function getOrCreateSheet(sheetName: string) {
   return sheet;
 }
 
-function mapContact(data: z.infer<typeof DownloadResourceForm>) {
+function mapContact(data: z.infer<typeof DownloadResourceFormSchema>) {
   return {
     [HEADERS_ROW[0]]: data.name,
     [HEADERS_ROW[1]]: data.email,
+    [HEADERS_ROW[4]]: data.phone,
     [HEADERS_ROW[3]]: data.resourceSlug,
     [HEADERS_ROW[2]]: new Date().toLocaleDateString(),
   };
@@ -93,128 +82,90 @@ async function findContact(sheet: GoogleSpreadsheetWorksheet, email: string) {
   return rows.find((row) => row.get(HEADERS_ROW[1]) === email);
 }
 
-export async function downloadResource(
-  _: {
-    success: boolean;
-    error: any;
-    url?: string;
-  },
-  formData: FormData,
-) {
-  try {
-    const ip =
-      headers().get("x-real-ip") ||
-      headers().get("x-forwarded-for") ||
-      "127.0.0.1";
-    const { success, limit, reset, remaining } = await ratelimit.limit(ip);
+export const downloadResource = actionClient
+  .metadata({
+    actionName: "downloadResource",
+  })
+  .schema(DownloadResourceFormSchema)
+  .action(async (data) => {
+    try {
+      const name = data.parsedInput.name;
 
-    if (!success) {
-      log.ingest({
-        event: "ratelimit",
-        data: {
-          limit,
-          reset,
-          remaining,
-        },
-        status_log: STATUS_LOG.error,
-      });
+      const email = data.parsedInput.email;
 
-      return {
-        success: false,
-        error: "Too many requests",
+      const resourceSlug = data.parsedInput.resourceSlug;
+
+      const phone = data.parsedInput.phone;
+
+      const contact = {
+        name,
+        email,
+        phone,
+        resourceSlug,
       };
-    }
 
-    log.ingest({
-      event: "ratelimit",
-      data: {
-        limit,
-        reset,
-        remaining,
-      },
-      status_log: STATUS_LOG.success,
-    });
+      // fetch resource by resourceId sanitized
+      const resource = await loadResource(resourceSlug);
 
-    const name = formData.get("name") as string;
+      if (!resource.data) {
+        log.ingest({
+          event: "resource not found",
+          data: contact,
+          status_log: STATUS_LOG.error,
+        });
 
-    const email = formData.get("email") as string;
+        return {
+          success: false,
+          error: "Resource not found",
+        };
+      }
 
-    const resourceSlug = formData.get("resourceSlug") as string;
-
-    const contact = {
-      name,
-      email,
-      resourceSlug,
-    };
-
-    const payload = DownloadResourceForm.safeParse(contact);
-
-    if (!payload.success) {
       log.ingest({
-        event: "validation error",
-        data: payload.error,
-        status_log: STATUS_LOG.error,
-      });
-
-      return {
-        success: false,
-        error: payload.error,
-      };
-    }
-
-    log.ingest({
-      event: "validation success",
-      data: contact,
-      status_log: STATUS_LOG.success,
-    });
-
-    // fetch resource by resourceId sanitized
-    const resource = await loadResource(resourceSlug);
-
-    if (!resource.data) {
-      log.ingest({
-        event: "resource not found",
-        data: contact,
-        status_log: STATUS_LOG.error,
-      });
-
-      return {
-        success: false,
-        error: "Resource not found",
-      };
-    }
-
-    log.ingest({
-      event: "resource found",
-      data: resource.data,
-      status_log: STATUS_LOG.success,
-    });
-
-    const sheet = await getOrCreateSheet("Resource " + resource.data?.title);
-
-    log.ingest({
-      event: "sheet get or create",
-      data: contact,
-      status_log: STATUS_LOG.success,
-    });
-
-    const foundContact = await findContact(sheet, payload.data.email);
-
-    if (foundContact) {
-      log.ingest({
-        event: "contact found",
-        data: foundContact.toObject(),
+        event: "resource found",
+        data: resource.data,
         status_log: STATUS_LOG.success,
       });
 
-      // Ovewrite contact
-      foundContact.assign(mapContact(contact));
-
-      await foundContact.save();
+      const sheet = await getOrCreateSheet("Resource " + resource.data?.title);
 
       log.ingest({
-        event: "contact updated",
-        data: foundContact.toObject(),
+        event: "sheet get or create",
+        data: contact,
+        status_log: STATUS_LOG.success,
+      });
+
+      const foundContact = await findContact(sheet, contact.email);
+
+      if (foundContact) {
+        log.ingest({
+          event: "contact found",
+          data: foundContact.toObject(),
+          status_log: STATUS_LOG.success,
+        });
+
+        // Ovewrite contact
+        foundContact.assign(mapContact(contact));
+
+        await foundContact.save();
+
+        log.ingest({
+          event: "contact updated",
+          data: foundContact.toObject(),
+          status_log: STATUS_LOG.success,
+        });
+
+        return {
+          success: true,
+          url: resource.data?.resource,
+          error: null,
+        };
+      }
+
+      await sheet.addRow(mapContact(contact));
+
+      log.ingest({
+        event: "resource downloaded",
+        data: contact,
         status_log: STATUS_LOG.success,
       });
 
@@ -223,31 +174,16 @@ export async function downloadResource(
         url: resource.data?.resource,
         error: null,
       };
+    } catch (error) {
+      log.ingest({
+        event: "error",
+        data: error.message,
+        status_log: STATUS_LOG.error,
+      });
+
+      return {
+        success: false,
+        error: error.message,
+      };
     }
-
-    await sheet.addRow(mapContact(contact));
-
-    log.ingest({
-      event: "resource downloaded",
-      data: contact,
-      status_log: STATUS_LOG.success,
-    });
-
-    return {
-      success: true,
-      url: resource.data?.resource,
-      error: null,
-    };
-  } catch (error) {
-    log.ingest({
-      event: "error",
-      data: error.message,
-      status_log: STATUS_LOG.error,
-    });
-
-    return {
-      success: false,
-      error: error.message,
-    };
-  }
-}
+  });

@@ -13,7 +13,7 @@ const ReactPlayer = dynamic(() => import("react-player/lazy"), {
       <div className="aspect-[9/16] w-full animate-pulse bg-neutral-200" />
     );
   },
-  suspense: true // Add Suspense support
+  suspense: true, // Add Suspense support
 });
 
 type Props = {
@@ -28,7 +28,6 @@ function Testimonial({ testimonial }: { testimonial: TestimonialPayload }) {
   const videoRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<ReactPlayerNative>(null);
 
-
   // Handle tab visibility changes
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -41,16 +40,15 @@ function Testimonial({ testimonial }: { testimonial: TestimonialPayload }) {
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Set initial visibility state
     setIsTabVisible(!document.hidden);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
-
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,9 +62,9 @@ function Testimonial({ testimonial }: { testimonial: TestimonialPayload }) {
         }
       },
       {
-        threshold: 0.5,  // Trigger when 50% of element is visible
-        rootMargin: '-50px' // Add some margin to trigger earlier
-      }
+        threshold: 0.5, // Trigger when 50% of element is visible
+        rootMargin: "-50px", // Add some margin to trigger earlier
+      },
     );
 
     if (videoRef.current) {
@@ -85,10 +83,10 @@ function Testimonial({ testimonial }: { testimonial: TestimonialPayload }) {
       }
     };
 
-    window.addEventListener('blur', handleFocusChange);
+    window.addEventListener("blur", handleFocusChange);
 
     return () => {
-      window.removeEventListener('blur', handleFocusChange);
+      window.removeEventListener("blur", handleFocusChange);
     };
   }, []);
 
@@ -100,12 +98,13 @@ function Testimonial({ testimonial }: { testimonial: TestimonialPayload }) {
     return isInView && isTabVisible;
   }, [isInView, isTabVisible, showVideo, testimonial.previewGift]);
 
-
   return (
     <div className="flex-1">
       <div className="flex flex-col gap-4 items-start text-left">
         {testimonial.videoUrl && (
-          <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden" ref={videoRef}
+          <div
+            className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden"
+            ref={videoRef}
           >
             {testimonial.previewGift && (
               <Image

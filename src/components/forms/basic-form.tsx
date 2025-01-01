@@ -30,7 +30,7 @@ import {
 import { CountrySelect, FlagComponent, PhoneInput } from "../ui/phone-input";
 
 function getBrowserCountryCode() {
-  // Get browser language
+  // @ts-expect-error
   const language = navigator.language || navigator.userLanguage;
 
   // Extract the country code (last 2 characters if language-COUNTRY format)
