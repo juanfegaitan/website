@@ -527,6 +527,14 @@ export interface PropertyDocument {
   currency?: string;
   similarProperties?: PropertyDocument[];
   kindOfDepartments?: KindOfDepartment[];
+  kindOfProperty?: KindOfProperty;
+  rentSpeed?: string;
+  constructionTime?: string;
+}
+
+export enum KindOfProperty {
+  HOUSE = "house",
+  DEPARTMENT = "department",
 }
 
 export interface Grid {

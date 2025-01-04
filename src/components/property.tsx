@@ -1,5 +1,5 @@
 import { resolveHref, urlForImage } from "@/sanity/lib/utils";
-import { InvestPagePayload, PropertyDocument } from "@/types";
+import { InvestPagePayload, KindOfProperty, PropertyDocument } from "@/types";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -115,17 +115,38 @@ export function Property({ property, investPage }: Props) {
           <strong>{property.appreciation ?? 0}%</strong>
         </div>
 
-        <div className="flex items-center justify-between gap-2 w-full mb-1">
-          <div>Ocupación zona:</div>
-          <strong>{property.occupancy ?? 0}%</strong>
-        </div>
+        {
+          property.kindOfProperty === KindOfProperty.DEPARTMENT && <>
+            <div className="flex items-center justify-between gap-2 w-full mb-1">
+              <div>Ocupación zona:</div>
+              <strong>{property.occupancy ?? 0}%</strong>
+            </div>
 
-        <div className="flex items-center justify-between gap-2 w-full">
-          <div>Entrega:</div>
-          <strong className="first-letter:capitalize">
-            {formatDate(property.deliveryDate)}
-          </strong>
-        </div>
+            <div className="flex items-center justify-between gap-2 w-full">
+              <div>Entrega:</div>
+              <strong className="first-letter:capitalize">
+                {formatDate(property.deliveryDate)}
+              </strong>
+            </div>
+          </>
+        }
+
+
+        {
+          property.kindOfProperty === KindOfProperty.HOUSE && <>
+            <div className="flex items-center justify-between gap-2 w-full mb-1">
+              <div>Tiempo de construcción:</div>
+              <strong className="truncate text-right">{property.constructionTime}</strong>
+            </div>
+
+            <div className="flex items-center justify-between gap-2 w-full">
+              <div>Velocidad de renta:</div>
+              <strong className="truncate text-right">
+                {property.rentSpeed}
+              </strong>
+            </div>
+          </>
+        }
 
         <div className="w-full h-px bg-primary my-4" />
 

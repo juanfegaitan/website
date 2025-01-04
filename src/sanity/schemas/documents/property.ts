@@ -43,6 +43,48 @@ export default defineType({
       type: "string",
       validation: (rule) => rule.required(),
     },
+    // kind of property house, apartment, etc
+    {
+      name: "kindOfProperty",
+      title: "Tipo de propiedad",
+      type: "string",
+      validation: (rule) => rule.required(),
+      placeholder: "Tipo de propiedad",
+      initialValue: ["apartment"],
+      options: {
+        list: [
+          { title: "Casa", value: "house" },
+          { title: "Departamento", value: "apartment" },
+        ],
+      },
+    },
+    // Agregar tiempo de construcción y Velocidad de renta a las casas de estados unidos. (debe verse en la card)
+    {
+      name: "constructionTime",
+      title: "Tiempo de construcción",
+      type: "string",
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (context.document?.kindOfProperty === "house" && !value) {
+            return "Este campo es requerido para propiedades tipo casa";
+          }
+          return true;
+        }),
+      hidden: ({ document }) => document?.kindOfProperty !== "house",
+    },
+    {
+      name: "rentSpeed",
+      title: "Velocidad de renta",
+      type: "string",
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (context.document?.kindOfProperty === "house" && !value) {
+            return "Este campo es requerido para propiedades tipo casa";
+          }
+          return true;
+        }),
+      hidden: ({ document }) => document?.kindOfProperty !== "house",
+    },
     {
       // appreciation
       name: "appreciation",
