@@ -34,15 +34,18 @@ function shortNumber(num?: number, currency?: string) {
     return "";
   }
 
+  let value = "";
+
   if (num > 999 && num < 1000000) {
-    return formatPrice(num / 1_000, currency) + "K" + " " + (currency ?? "MXN"); // convert to K for number from > 1000 < 1 million
+    value = formatPrice(num / 1_000, currency) + "K" + " "; // convert to K for number from > 1000 < 1 million
   } else if (num > 1000000) {
-    return (
-      formatPrice(num / 1_000_000, currency) + "M" + " " + (currency ?? "MXN")
-    ); // convert to M for number from > 1 million
+    value = formatPrice(num / 1_000_000, currency) + "M" + " "; // convert to M for number from > 1 million
   } else if (num < 900) {
-    return num; // if value < 1000, nothing to do
+    value = num.toString(); // if value < 1000, nothing to do
   }
+
+  // if the value has the cyurrency symbol, remove it
+  return value.replace(currency ?? "MXN", "") + " " + (currency ?? "MXN");
 }
 
 function formatPrice(price: number | undefined | null, currency?: string) {
