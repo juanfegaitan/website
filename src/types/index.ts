@@ -534,7 +534,7 @@ export interface PropertyDocument {
 
 export enum KindOfProperty {
   HOUSE = "house",
-  DEPARTMENT = "department",
+  DEPARTMENT = "apartment",
 }
 
 export interface Grid {

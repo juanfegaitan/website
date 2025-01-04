@@ -4,6 +4,7 @@ import { CustomPortableText } from "@/components/shared/CustomPortableText";
 import { _generateMetadata, urlForImage } from "@/sanity/lib/utils";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { loadInvestPage, loadProperty } from "@/sanity/loader/loadQuery";
+import { KindOfProperty } from "@/types";
 import dayjs from "dayjs";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -130,10 +131,37 @@ export default async function ListingDetailPage(props: Props) {
               </div>
             </div>
 
-            <div>
-              <div className="">Ocupación zona</div>
-              <div className="text-2xl font-bold">%{data?.occupancy}</div>
-            </div>
+            {data?.kindOfProperty === KindOfProperty.DEPARTMENT && (
+              <>
+                <div>
+                  <div className="">Ocupación zona</div>
+                  <div className="text-2xl font-bold">{data?.occupancy}%</div>
+                </div>
+                <div>
+                  <div className="">Entrega</div>
+                  <div className="text-2xl font-bold first-letter:capitalize">
+                    {" "}
+                    {formatDate(data.deliveryDate)}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {data?.kindOfProperty === KindOfProperty.HOUSE && (
+              <>
+                <div>
+                  <div className="">Tiempo de construcción</div>
+                  <div className="text-2xl font-bold">
+                    {data?.constructionTime}
+                  </div>
+                </div>
+
+                <div>
+                  <div>Velocidad de renta:</div>
+                  <div className="text-2xl font-bold">{data?.rentSpeed}</div>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="flex flex-col gap-4 flex-1 px-2 py-8 md:py-0 md:px-8  border-b md:border-b-0 md:border-r border-black">

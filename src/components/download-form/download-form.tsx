@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  downloadResource,
-} from "@/actions/download-resource";
+import { downloadResource } from "@/actions/download-resource";
 import { DownloadResourceFormSchema } from "@/schema/download-resource";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
@@ -18,7 +16,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormMessage
+  FormMessage,
 } from "../ui/form";
 import { CountrySelect, FlagComponent, PhoneInput } from "../ui/phone-input";
 
@@ -135,7 +133,7 @@ export function DownloadForm(props: DownloadResourceForm) {
                   countrySelectComponent={CountrySelect}
                   inputComponent={PhoneInput}
                   numberInputProps={{
-                    className: "h-14"
+                    className: "h-14",
                   }}
                   defaultCountry={country}
                   placeholder="Escribe tu teléfono"

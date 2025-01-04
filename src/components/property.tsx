@@ -77,7 +77,7 @@ export function Property({ property, investPage }: Props) {
   );
 
   const image = urlForImage(property.gallery?.images?.[0])?.url();
-
+  console.log({ property });
   if (!link) {
     return null;
   }
@@ -115,8 +115,8 @@ export function Property({ property, investPage }: Props) {
           <strong>{property.appreciation ?? 0}%</strong>
         </div>
 
-        {
-          property.kindOfProperty === KindOfProperty.DEPARTMENT && <>
+        {property.kindOfProperty === KindOfProperty.DEPARTMENT && (
+          <>
             <div className="flex items-center justify-between gap-2 w-full mb-1">
               <div>Ocupación zona:</div>
               <strong>{property.occupancy ?? 0}%</strong>
@@ -129,14 +129,15 @@ export function Property({ property, investPage }: Props) {
               </strong>
             </div>
           </>
-        }
+        )}
 
-
-        {
-          property.kindOfProperty === KindOfProperty.HOUSE && <>
+        {property.kindOfProperty === KindOfProperty.HOUSE && (
+          <>
             <div className="flex items-center justify-between gap-2 w-full mb-1">
               <div>Tiempo de construcción:</div>
-              <strong className="truncate text-right">{property.constructionTime}</strong>
+              <strong className="truncate text-right">
+                {property.constructionTime}
+              </strong>
             </div>
 
             <div className="flex items-center justify-between gap-2 w-full">
@@ -146,7 +147,7 @@ export function Property({ property, investPage }: Props) {
               </strong>
             </div>
           </>
-        }
+        )}
 
         <div className="w-full h-px bg-primary my-4" />
 

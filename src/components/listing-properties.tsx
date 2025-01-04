@@ -1,6 +1,6 @@
 "use client";
 
-import { InvestPagePayload, PropertyDocument } from "@/types";
+import { InvestPagePayload, KindOfProperty, PropertyDocument } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { Property } from "./property";
 
@@ -60,6 +60,10 @@ function filterProperties(
     })
     .filter((property) => {
       if (!fromDateString || !toDateString) {
+        return true;
+      }
+
+      if (property.kindOfProperty === KindOfProperty.HOUSE) {
         return true;
       }
 

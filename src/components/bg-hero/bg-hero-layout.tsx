@@ -47,7 +47,8 @@ export function BgHeroLayout({ hero, className, ...props }: Props) {
             className={cn(
               "w-full h-full flex flex-col items-center justify-center",
               {
-                "justify-start items-start md:justify-center mt-8 md:mt-0 md:w-1/2": !!hero.bgMobile,
+                "justify-start items-start md:justify-center mt-8 md:mt-0 md:w-1/2":
+                  !!hero.bgMobile,
               },
             )}
           >
